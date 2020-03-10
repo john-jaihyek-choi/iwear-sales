@@ -26,6 +26,35 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/products/:productId', (req, res, next) => {
+  const products = `
+    select *
+      from "products"
+      where "productId" = $1
+  `;
+
+  const value = [req.params.productId];
+
+  if (!Number.isInteger(Number(value[0])) || value[0] < 0) {
+    return (res.status(400).json({
+      error: 'Grade ID must be a positive integer.'
+    }));
+  }
+
+  db.query(products, value)
+    .then(result => {
+      const [item] = result.rows;
+      if (!item) {
+        res.status(404).json({
+          error: `Product ID ${req.params.productId} does not exist`
+        });
+      } else {
+        res.json(item);
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
