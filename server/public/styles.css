@@ -19,7 +19,35 @@ header {
     background-color: rgb(232, 232, 232);
 }
 
-img {
+.catalog > img {
     height: 200px;
     object-fit: contain;
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.backToCatalog {
+    color: gray;
+}
+
+.backToCatalog:hover {
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.details {
+    background-color: white;
+}
+
+.detailsImg > img{
+    width: 500px;
+    height: 300px;
+    object-fit: contain;
+}
+
+.detailsImg {
+    justify-content: center;
 }
