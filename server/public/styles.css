@@ -1,0 +1,25 @@
+* {
+    font-family: sans-serif;
+}
+
+header {
+    background-color: rgb(10, 10, 91);
+    color: white;
+    height: 66px;
+    padding: 0 50px;
+    display: flex;
+}
+
+.headerContent {
+    margin: auto 0;
+}
+
+.body {
+    justify-content: center;
+    background-color: rgb(232, 232, 232);
+}
+
+img {
+    height: 200px;
+    object-fit: contain;
+}
