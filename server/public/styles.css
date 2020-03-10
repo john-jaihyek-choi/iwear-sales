@@ -14,17 +14,17 @@ header {
     margin: auto 0;
 }
 
-.card {
-    margin-top: 20px;
-}
-
-.body {
+.deck {
     display: flex;
     flex-wrap: wrap;
-    background-color: rgb(215, 215, 215);
+    justify-content: center;
 }
 
 .card {
     flex-basis: 28%;
-    margin: auto;
+}
+
+img {
+    height: 200px;
+    object-fit: contain;
 }
