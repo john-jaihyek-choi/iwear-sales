@@ -14,15 +14,9 @@ header {
     margin: auto 0;
 }
 
-.deck {
-    display: flex;
-    flex-wrap: wrap;
+.body {
     justify-content: center;
     background-color: rgb(232, 232, 232);
-}
-
-.card {
-    flex-basis: 28%;
 }
 
 img {
