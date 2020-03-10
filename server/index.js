@@ -37,7 +37,13 @@ app.get('/api/products/:productId', (req, res, next) => {
   db.query(products, value)
     .then(result => {
       const [item] = result.rows;
-      res.json(item);
+      if (!item) {
+        res.status(404).json({
+          error: `Product ID ${req.params.productId} does not exist`
+        });
+      } else {
+        res.json(item);
+      }
     })
     .catch(err => next(err));
 });
