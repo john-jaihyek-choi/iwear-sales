@@ -32,7 +32,14 @@ app.get('/api/products/:productId', (req, res, next) => {
       from "products"
       where "productId" = $1
   `;
+
   const value = [req.params.productId];
+
+  if (!Number.isInteger(Number(value[0])) || value[0] < 0) {
+    res.status(400).json({
+      error: 'Grade ID must be a positive integer.'
+    });
+  }
 
   db.query(products, value)
     .then(result => {
