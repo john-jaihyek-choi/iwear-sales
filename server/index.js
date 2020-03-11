@@ -69,10 +69,33 @@ app.get('/api/carts', (req, res, next) => {
 });
 
 app.post('/api/carts', (req, res, next) => {
-  // const item = `
-  //   insert into "carts" ()
-  //     set
+  const cart = `
+    insert into "carts" ("cardId", "createdAt")
+      values ("default", "deafult")
+  `;
+
+  // const cartId = `
+  //   insert into "carts" ("cartId",)
   // `;
+
+  if (!req.body.productId) {
+    return (res.status(400).json({
+      error: "Please input body content in following format ('productId'= #)"
+    }));
+  }
+  if (!Number.isInteger(req.body.productId) || req.body.productId < 0) {
+    return (res.status(400).json({
+      error: 'Invalid entry, Product ID must be a positive integer'
+    }));
+  }
+
+  db.query(cart)
+    .then(result => {
+      if (result.rows.length < 1) {
+        throw new ClientError('There are no data rows present in carts table', 400);
+      }
+    });
+
 });
 
 app.use('/api', (req, res, next) => {
