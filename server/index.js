@@ -58,7 +58,7 @@ app.get('/api/products/:productId', (req, res, next) => {
 app.get('/api/carts', (req, res, next) => {
   if (!req.session.cartId) {
     const emptyArr = [];
-    return emptyArr;
+    return res.json(emptyArr);
   }
   const carts = `
     select "c"."cartItemId",
@@ -104,7 +104,7 @@ app.post('/api/carts', (req, res, next) => {
   db.query(price, priceValue)
     .then(result1 => {
       if (result1.rows.length < 1) {
-        throw new ClientError('There are no data rows present in carts table', 400);
+        next(new ClientError('Product ID does not exist', 400));
       }
       if (req.session.cartId) {
         const promiseObj = {};
@@ -165,7 +165,8 @@ app.post('/api/carts', (req, res, next) => {
         .then(result2 => {
           const [cartItem] = result2.rows;
           res.status(201).json(cartItem);
-        });
+        })
+        .catch(err => next(err));
       return promiseObj;
     });
 });
