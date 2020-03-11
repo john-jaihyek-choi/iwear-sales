@@ -9,7 +9,7 @@ export default class Header extends React.Component {
         </div>
         <div className="col my-auto offset-md-4">
           <i className="fas fa-shopping-cart fa-lg float-right"></i>
-          <h6 className="float-right mx-3">Cart({this.props.cartItemCount} items)</h6>
+          <h6 className="float-right mx-3">Cart({this.props.cartItemCount} {this.props.cartItemCount < 2 ? 'item' : 'items'})</h6>
         </div>
       </header>
     );
