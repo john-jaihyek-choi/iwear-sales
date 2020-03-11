@@ -104,7 +104,7 @@ app.post('/api/carts', (req, res, next) => {
   db.query(price, priceValue)
     .then(result1 => {
       if (result1.rows.length < 1) {
-        next(new ClientError('Product ID does not exist', 400));
+        throw new ClientError('Product ID does not exist', 400);
       }
       if (req.session.cartId) {
         const promiseObj = {};
@@ -168,7 +168,8 @@ app.post('/api/carts', (req, res, next) => {
         })
         .catch(err => next(err));
       return promiseObj;
-    });
+    })
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
