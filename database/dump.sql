@@ -68,7 +68,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public."cartItems" (
     "cartItemId" integer NOT NULL,
-    "cardId" integer NOT NULL,
+    "cartId" integer NOT NULL,
     "productId" integer NOT NULL,
     price integer NOT NULL
 );
@@ -183,7 +183,7 @@ ALTER TABLE ONLY public.products ALTER COLUMN "productId" SET DEFAULT nextval('p
 -- Data for Name: cartItems; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public."cartItems" ("cartItemId", "cardId", "productId", price) FROM stdin;
+COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
 \.
 
 
@@ -192,6 +192,36 @@ COPY public."cartItems" ("cartItemId", "cardId", "productId", price) FROM stdin;
 --
 
 COPY public.carts ("cartId", "createdAt") FROM stdin;
+1	2020-03-11 01:24:16.286956+00
+2	2020-03-11 01:26:21.063365+00
+3	2020-03-11 01:27:41.309183+00
+4	2020-03-11 01:29:25.918907+00
+5	2020-03-11 01:29:36.927461+00
+6	2020-03-11 01:38:53.685748+00
+7	2020-03-11 01:39:53.058185+00
+8	2020-03-11 01:43:10.287155+00
+9	2020-03-11 01:44:01.315408+00
+10	2020-03-11 01:44:49.11848+00
+11	2020-03-11 01:45:06.557854+00
+12	2020-03-11 01:45:14.195306+00
+13	2020-03-11 01:45:31.768258+00
+14	2020-03-11 01:46:01.226366+00
+15	2020-03-11 01:47:33.432627+00
+16	2020-03-11 01:47:57.73593+00
+17	2020-03-11 01:50:02.810388+00
+18	2020-03-11 01:51:13.59196+00
+19	2020-03-11 01:52:17.304153+00
+20	2020-03-11 01:54:26.104004+00
+21	2020-03-11 01:55:12.438145+00
+22	2020-03-11 01:56:03.343465+00
+23	2020-03-11 01:56:21.239407+00
+24	2020-03-11 01:58:36.367434+00
+25	2020-03-11 02:01:05.902076+00
+26	2020-03-11 02:01:22.00889+00
+27	2020-03-11 02:02:36.018568+00
+28	2020-03-11 02:03:29.489361+00
+29	2020-03-11 02:03:43.73959+00
+30	2020-03-11 02:11:34.684031+00
 \.
 
 
@@ -220,7 +250,7 @@ SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 1, false);
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 1, false);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 30, true);
 
 
 --
