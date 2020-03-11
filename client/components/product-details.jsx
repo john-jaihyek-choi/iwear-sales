@@ -7,10 +7,16 @@ export default class ProductDetails extends React.Component {
       product: {}
     };
     this.closeDetail = this.closeDetail.bind(this);
+    this.addToCartHandle = this.addToCartHandle.bind(this);
   }
 
   closeDetail(event) {
     this.props.setView('catalog', {});
+  }
+
+  addToCartHandle(event) {
+    event.preventDefault();
+    this.props.addToCart(this.state.product);
   }
 
   componentDidMount() {
@@ -38,6 +44,7 @@ export default class ProductDetails extends React.Component {
               <h3>{this.state.product.name}</h3>
               <p className="text-muted">{`$ ${(this.state.product.price / 100).toFixed(2)}`}</p>
               <p>{this.state.product.shortDescription}</p>
+              <button onClick={this.addToCartHandle}className="btn btn-primary">Add to Cart</button>
             </div>
           </div>
           <div className="row">
