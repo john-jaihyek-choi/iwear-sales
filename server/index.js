@@ -194,10 +194,8 @@ app.post('/api/orders', (req, res, next) => {
   db.query(orders, ordersValue)
     .then(result1 => {
       const [customerInfo] = result1.rows;
+      delete req.session.cartId;
       const promiseObj = res.status(201).json(customerInfo);
-      if (promiseObj.statusCode === 201) {
-        delete req.session.cartId;
-      }
       return promiseObj;
     });
 });
