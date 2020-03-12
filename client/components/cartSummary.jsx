@@ -24,7 +24,7 @@ export default class CartSummary extends React.Component {
         </div>
         <div className="row mx-auto">
           <h3 className="col">My Cart ({this.props.cart.length} Total Items)</h3>
-          <h3 className="col text-right">Item Total ${(totalPrice / 100).toFixed(2)}</h3>
+          <h3 className="col text-right">Item Total <span className="badge badge-primary">${(totalPrice / 100).toFixed(2)}</span></h3>
         </div>
         <div className="container">
           {this.props.cart.map((product, index) =>

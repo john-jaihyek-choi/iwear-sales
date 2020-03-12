@@ -61,3 +61,7 @@ header {
 .shopCart:hover {
     transform: scale(1.1);
 }
+
+.logo:hover {
+    cursor: pointer;    
+}
