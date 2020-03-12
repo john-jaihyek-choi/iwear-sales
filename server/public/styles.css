@@ -47,3 +47,17 @@ header {
 .detailsImg {
     justify-content: center;
 }
+
+.cartProductImg {
+    width: 400px;
+    height: 300px;
+    object-fit: contain;
+}
+
+.goToCart:hover {
+    cursor: pointer;
+}
+
+.shopCart:hover {
+    transform: scale(1.1);
+}

@@ -33,7 +33,13 @@ export default class ProductList extends React.Component {
     return (
       <div className="body row">
         {this.state.products.map(item =>
-          <ProductListItem viewDetails={this.viewDetails} key={`item${item.productId}`} name={item.name} description={item.shortDescription} price={item.price} image={item.image} productId={item.productId}/>
+          <ProductListItem
+            viewDetails={this.viewDetails}
+            key={`item${item.productId}`}
+            name={item.name}
+            description={item.shortDescription}
+            price={item.price} image={item.image}
+            productId={item.productId}/>
         )}
       </div>
     );
