@@ -172,6 +172,36 @@ app.post('/api/carts', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/orders', (req, res, next) => {
+  if (!req.session.cartId) {
+    return res.status(400).json({
+      error: 'Cart ID cannot be found in current session'
+    });
+  }
+  if (!req.body.name || !req.body.creditCard || !req.body.shippingAddress) {
+    return res.status(400).json({
+      error: 'Please verify that the body contains the following information: name, creditCard, shippingAddress'
+    });
+  }
+
+  const orders = `
+    insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+      values ($1, $2, $3, $4)
+      returning *
+  `;
+  const ordersValue = [req.session.cartId, req.body.name, req.body.creditCard, req.body.shippingAddress];
+
+  db.query(orders, ordersValue)
+    .then(result1 => {
+      const [customerInfo] = result1.rows;
+      const promiseObj = res.status(201).json(customerInfo);
+      if (promiseObj.statusCode === 201) {
+        delete req.session.cartId;
+      }
+      return promiseObj;
+    });
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });

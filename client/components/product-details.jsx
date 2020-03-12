@@ -31,8 +31,8 @@ export default class ProductDetails extends React.Component {
 
   render() {
     return (
-      <div className="body row details">
-        <div className="container">
+      <div className="body row details my-4">
+        <div className="container border">
           <div className="row">
             <h6 className="col mx-2 my-2 backToCatalog" onClick={this.closeDetail}> &lt; Back to Catalog</h6>
           </div>
