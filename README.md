@@ -42,7 +42,7 @@ Link: [here]
 1. Clone the repository.
 
     ```shell
-    git clone https://github.com/spenceruns/wicked-sales-js
+    git clone https://github.com/john-jaihyek-choi/wicked-sales-js
     cd wicked-sales-js
     ```
 
