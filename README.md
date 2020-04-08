@@ -2,7 +2,7 @@
 A full stack Node.js and React.js shopping cart app.
 
 ## Live Demo
-Link: [here](https://iwear-sales.johnjhc.com/)
+Application can be accessed live [here](https://iwear-sales.johnjhc.com/)
 
 ## Technologies Used
 - React.js
