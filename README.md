@@ -21,13 +21,13 @@ Link: [here]
 - User can navigate to the checkout page
 - User can place an order
 
-# Preview
-![wv-preview](https://user-images.githubusercontent.com/57784907/78767524-8f29c000-793f-11ea-8d00-be8fcd31f838.gif)
-
 # Upcoming Features
 
 - User can delete the products from the cart
 - User can adjust quantity of the products to add to the cart
+
+# Preview
+![wv-preview](https://user-images.githubusercontent.com/57784907/78767524-8f29c000-793f-11ea-8d00-be8fcd31f838.gif)
 
 ## Development
 
