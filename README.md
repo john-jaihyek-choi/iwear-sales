@@ -1,4 +1,4 @@
-# Wicked-Sales-js
+# iWear-Sales
 A full stack Node.js and React.js shopping cart app.
 
 # Technologies Used
@@ -42,8 +42,8 @@ Link: [here]
 1. Clone the repository.
 
     ```shell
-    git clone https://github.com/john-jaihyek-choi/wicked-sales-js
-    cd wicked-sales-js
+    git clone https://github.com/john-jaihyek-choi/iwear-sales
+    cd iwear-sales
     ```
 
 1. Install all dependencies with NPM.
