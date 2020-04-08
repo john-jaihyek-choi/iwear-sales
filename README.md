@@ -11,7 +11,7 @@ A full stack Node.js and React.js shopping cart app.
 - AWS EC2
 
 # Live Demo
-Link: [here] (https://iwear-sales.johnjhc.com/)
+Link: [here](https://iwear-sales.johnjhc.com/)
 
 # Features
 - User can view list of all products
