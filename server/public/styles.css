@@ -77,7 +77,7 @@ header {
         width: 100% !important;
     }
     .logo, .goToCart{
-        font-size: 0.9rem;
+        font-size: 0.9rem !important;
     }
 }
 
