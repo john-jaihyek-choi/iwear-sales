@@ -6,7 +6,8 @@ export default class CheckoutForm extends React.Component {
     this.state = {
       name: null,
       creditCard: null,
-      shippingAddress: null
+      shippingAddress: null,
+      inputValidation: null
     };
     this.continueShopping = this.continueShopping.bind(this);
     this.inputChange = this.inputChange.bind(this);
@@ -19,6 +20,7 @@ export default class CheckoutForm extends React.Component {
 
   confirmOrder(event) {
     event.preventDefault();
+    if (!this.state.name || !this.state.creditCard || !this.state.shippingAddress) return this.setState({ inputValidation: 'Please make sure to complete all the fields' });
     this.props.placeOrder(this.state);
   }
 
@@ -45,9 +47,10 @@ export default class CheckoutForm extends React.Component {
   render() {
     return (
       <>
-        <div className="container">
-          <h1 className="mt-4">My Cart</h1>
-          <h5 className="text-muted mt-4">Order Total: <strong>${this.props.cartTotal}</strong></h5>
+        <div className="container d-flex flex-wrap">
+          <h1 className="mt-4 w-100">My Cart</h1>
+          <h5 className="text-muted mt-4 w-25">Order Total: <strong>${this.props.cartTotal}</strong></h5>
+          <h5 className="mt-4 w-75 text-center text-danger">{this.state.inputValidation || ''}</h5>
         </div>
         <form className="container justify-content-md-center" onSubmit={this.confirmOrder}>
           <label htmlFor="name" className="col mt-2 p-0">Name</label>
