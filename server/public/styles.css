@@ -49,8 +49,8 @@ header {
 }
 
 .cartProductImg {
-    width: 400px;
-    height: 300px;
+    height: 100%;
+    width: 100%;
     object-fit: contain;
 }
 
@@ -70,6 +70,9 @@ header {
     .card {
         width: 40% !important;
     }
+    .cartSummaryHeader {
+        font-size: 1rem !important;
+    }
 }
 
 @media only screen and (max-width: 414px) {
@@ -79,11 +82,23 @@ header {
     .logo, .goToCart{
         font-size: 0.9rem !important;
     }
+    .cartSummaryHeader {
+        font-size: 1rem !important;
+    }
+    .cartItemDescription {
+        font-size: 0.7rem !important;
+    }
+    .backToCatalog {
+        font-size: 0.8rem;
+    }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 375px) {
     .logo, .goToCart {
         font-size: 0.7rem !important;
         margin-right: 0 !important;
+    }
+    .cartSummaryHeader {
+        font-size: 0.7rem !important;
     }
 }

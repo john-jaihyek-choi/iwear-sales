@@ -22,12 +22,12 @@ export default class CartSummary extends React.Component {
     return (
       <div className="container my-auto">
         <div className="row mx-auto my-4">
-          <h6 className="col offset-sm-6 mx-2 my-auto backToCatalog" onClick={this.closeCartView}> &lt; Back to Catalog</h6>
+          <h6 className="col offset-sm-6 mx-2 px-0 my-auto backToCatalog" onClick={this.closeCartView}> &lt; Back to Catalog</h6>
           <button className="col offset-sm-6 btn btn-primary" onClick={this.checkOut}>Checkout</button>
         </div>
         <div className="row mx-auto">
-          <h3 className="col">My Cart ({this.props.cart.length} Total Items)</h3>
-          <h3 className="col text-right">Item Total <span className="badge badge-primary">${this.props.cartTotal}</span></h3>
+          <h3 className="col px-0 cartSummaryHeader">My Cart ({this.props.cart.length} Total Items)</h3>
+          <h3 className="col text-right px-0 cartSummaryHeader">Item Total <span className="badge badge-primary">${this.props.cartTotal}</span></h3>
         </div>
         <div className="container">
           {this.props.cart.map((product, index) =>
