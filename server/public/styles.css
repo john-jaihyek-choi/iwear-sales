@@ -62,6 +62,11 @@ header {
     transform: scale(1.1);
 }
 
+.logo {
+    width: 30%;
+    object-fit: contain;
+}
+
 .logo:hover {
     cursor: pointer;    
 }
