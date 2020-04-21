@@ -11,6 +11,7 @@ Application can be accessed live [here](https://iwear-sales.johnjhc.com/)
 - Bootstrap 4
 - React.js
 - Node.js
+- Express.js
 - PostgreSQL
 - AWS EC2
 
