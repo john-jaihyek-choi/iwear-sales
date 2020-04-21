@@ -5,15 +5,17 @@ A full stack Node.js and React.js shopping cart app.
 Application can be accessed live [here](https://iwear-sales.johnjhc.com/)
 
 ## Technologies Used
-- JavaScript
 - HTML5
 - CSS3
-- Bootstrap 4
-- React.js
+- JavaScript
+- React
+- PostgreSQL
 - Node.js
 - Express.js
-- PostgreSQL
-- AWS EC2
+- Fetch
+- Media Queries
+- Bootstrap
+- APIs
 
 ## Features
 - User can view list of all products
