@@ -16,7 +16,7 @@ export default class Footer extends React.Component {
           <div className="row mb-5">
             <div className="col-md">
               <div className="mb-4">
-                <h2 className="">iWear</h2>
+                <h2>iWear</h2>
                 <p>iWear E-Commerece Website</p>
                 <ul className="list-unstyled float-md-left float-lft mt-5">
                   <li><a href="#"><span className="icon-twitter"></span></a></li>
