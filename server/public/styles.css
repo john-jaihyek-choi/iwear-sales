@@ -6,3 +6,31 @@ body {
     font-weight: 400;
     color: gray;
 }
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.topper {
+    font-size: 11px;
+    width: 100%;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: black;
+}
+
+.navbar .navbar-nav > .nav-item {
+    font-size: 10px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 400;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 1 !important;
+}
