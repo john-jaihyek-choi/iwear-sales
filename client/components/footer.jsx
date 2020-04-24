@@ -11,10 +11,10 @@ export default class Footer extends React.Component {
               <div className="mb-4">
                 <h2>iWear</h2>
                 <p>iWear E-Commerece Website</p>
-                <ul className="list-unstyled float-md-left float-lft mt-5">
-                  <li><a href="#"><span className="icon-twitter"></span></a></li>
-                  <li><a href="#"><span className="icon-facebook"></span></a></li>
-                  <li><a href="#"><span className="icon-instagram"></span></a></li>
+                <ul className="list-unstyled mt-5 d-flex flex-wrap">
+                  <li className="mx-2 text-dark"><a href="#"><i className='bx bxl-github bx-md text-dark' ></i></a></li>
+                  <li className="mx-2"><a href="#"><i className='bx bxl-linkedin bx-md text-dark' ></i></a></li>
+                  <li className="mx-2"><a href="#"><i className='bx bxs-window-alt bx-md text-dark' ></i></a></li>
                 </ul>
               </div>
             </div>
