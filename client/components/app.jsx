@@ -1,9 +1,10 @@
 import React from 'react';
 import Header from './header';
-import ProductList from './productList';
-import ProductDetails from './product-details';
-import CartSummary from './cartSummary';
-import CheckoutForm from './checkoutForm';
+import Footer from './footer';
+// import ProductList from './productList';
+// import ProductDetails from './product-details';
+// import CartSummary from './cartSummary';
+// import CheckoutForm from './checkoutForm';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -92,23 +93,10 @@ export default class App extends React.Component {
   }
 
   render() {
-    let content = null;
-    if (this.state.view.name === 'catalog') {
-      content = <ProductList setView={this.setView}/>;
-    } else if (this.state.view.name === 'details') {
-      content = <ProductDetails addToCart={this.addToCart} setView={this.setView} productId={this.state.view.params}/>;
-    } else if (this.state.view.name === 'cart') {
-      content = <CartSummary cart={this.state.cart} setView={this.setView} cartTotal={this.calculateCartTotal()}/>;
-    } else if (this.state.view.name === 'checkout') {
-      content = <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} cartTotal={this.calculateCartTotal()}/>;
-    }
-
     return (
       <>
-        <div className="container-fluid">
-          <Header cartItemCount={this.state.cart.length} setView={this.setView}/>
-          {content}
-        </div>
+        <Header />
+        <Footer />
       </>
     );
   }
