@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
           <div className="row mb-5">
             <div className="col-md">
               <div className="mb-4">
-                <h2>iWear</h2>
+                <h2 className="footer-heading">iWear</h2>
                 <p>iWear E-Commerece Website</p>
                 <ul className="list-unstyled mt-5 d-flex flex-wrap">
                   <li className="mx-2 text-dark"><a href="#"><i className='bx bxl-github bx-md text-dark' ></i></a></li>
@@ -20,22 +20,22 @@ export default class Footer extends React.Component {
             </div>
             <div className="col-md">
               <div className="mb-4 ml-md-5">
-                <h2>Menu</h2>
+                <h2 className="footer-heading">Menu</h2>
                 <ul className="list-unstyled">
-                  <li>Shop</li>
-                  <li>About</li>
-                  <li>Contact Us</li>
+                  <li className="footer-content">Shop</li>
+                  <li className="footer-content">About</li>
+                  <li className="footer-content">Contact Us</li>
                 </ul>
               </div>
             </div>
             <div className="col-md">
               <div className="mb-4">
-                <h2>Have a Questions?</h2>
+                <h2 className="footer-heading">Have a Questions?</h2>
                 <div className="block-23 mb-3">
                   <ul className="list-unstyled">
-                    <li><i className='bx bxs-map'></i>Orange County, CA</li>
-                    <li><i className='bx bxs-phone' ></i>+2 392 3929 210</li>
-                    <li><i className='bx bx-mail-send' ></i>email@yourdomain.com</li>
+                    <li className="footer-content"><i className='bx bxs-map bx-sm'></i>Orange County, CA</li>
+                    <li className="footer-content"><i className='bx bxs-phone' ></i>+2 392 3929 210</li>
+                    <li className="footer-content"><i className='bx bx-mail-send' ></i>email@yourdomain.com</li>
                   </ul>
                 </div>
               </div>
