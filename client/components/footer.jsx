@@ -32,10 +32,10 @@ export default class Footer extends React.Component {
               <div className="mb-4">
                 <h2>Have a Questions?</h2>
                 <div className="block-23 mb-3">
-                  <ul>
-                    <li>Orange County, CA</li>
-                    <li>+2 392 3929 210</li>
-                    <li>email@yourdomain.com</li>
+                  <ul className="list-unstyled">
+                    <li><i className='bx bxs-map'></i>Orange County, CA</li>
+                    <li><i className='bx bxs-phone' ></i>+2 392 3929 210</li>
+                    <li><i className='bx bx-mail-send' ></i>email@yourdomain.com</li>
                   </ul>
                 </div>
               </div>
