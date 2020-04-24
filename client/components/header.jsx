@@ -44,10 +44,10 @@ export default class Header extends React.Component {
             <div className="container">
               <a className="navbar-brand" href="index.html">iWear</a>
               <button className="navbar-toggler" type="button" data-toggle="collapse">
-                <span></span> Menu
+                Menu
               </button>
 
-              <div className="collapse navbar-collapse" id="ftco-nav">
+              <div className="collapse navbar-collapse">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item nav-link active">Home</li>
                   <li className="nav-item nav-link">Shop</li>
