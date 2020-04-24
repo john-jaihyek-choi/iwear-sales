@@ -6,13 +6,6 @@ export default class Footer extends React.Component {
     return (
       <footer className="bg-light">
         <div className="container">
-          <div className="row">
-            <div className="mouse">
-              <a href="#" className="mouse-icon">
-                <div className="mouse-wheel"><span className="ion-ios-arrow-up"></span></div>
-              </a>
-            </div>
-          </div>
           <div className="row mb-5">
             <div className="col-md">
               <div className="mb-4">
@@ -29,9 +22,9 @@ export default class Footer extends React.Component {
               <div className="mb-4 ml-md-5">
                 <h2>Menu</h2>
                 <ul className="list-unstyled">
-                  <li><a href="#" className="py-2 d-block">Shop</a></li>
-                  <li><a href="#" className="py-2 d-block">About</a></li>
-                  <li><a href="#" className="py-2 d-block">Contact Us</a></li>
+                  <li>Shop</li>
+                  <li>About</li>
+                  <li>Contact Us</li>
                 </ul>
               </div>
             </div>
@@ -40,9 +33,9 @@ export default class Footer extends React.Component {
                 <h2>Have a Questions?</h2>
                 <div className="block-23 mb-3">
                   <ul>
-                    <li><span className="icon icon-map-marker"></span><span className="text">Orange County, CA</span></li>
-                    <li><a href="#"><span className="icon icon-phone"></span><span className="text">+2 392 3929 210</span></a></li>
-                    <li><a href="#"><span className="icon icon-envelope"></span><span className="text">email@yourdomain.com</span></a></li>
+                    <li>Orange County, CA</li>
+                    <li>+2 392 3929 210</li>
+                    <li>email@yourdomain.com</li>
                   </ul>
                 </div>
               </div>
