@@ -33,9 +33,9 @@ export default class Footer extends React.Component {
                 <h2 className="footer-heading">Have a Questions?</h2>
                 <div className="block-23 mb-3">
                   <ul className="list-unstyled">
-                    <li className="footer-content"><i className='bx bxs-map bx-sm'></i>Orange County, CA</li>
-                    <li className="footer-content"><i className='bx bxs-phone' ></i>+2 392 3929 210</li>
-                    <li className="footer-content"><i className='bx bx-mail-send' ></i>email@yourdomain.com</li>
+                    <li className="footer-content align-middle"><i className='bx bxs-map bx-sm align-middle'></i><span className="align-middle"> Orange County, CA</span></li>
+                    <li className="footer-content align-middle"><i className='bx bxs-phone bx-sm align-middle' ></i><span className="align-middle"> +1 123 456 7890</span></li>
+                    <li className="footer-content align-middle"><i className='bx bx-mail-send bx-sm align-middle' ></i><span className="align-middle"> email@yourdomain.com</span></li>
                   </ul>
                 </div>
               </div>
