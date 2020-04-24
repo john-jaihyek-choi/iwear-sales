@@ -36,14 +36,14 @@ export default class Header extends React.Component {
                   <div className="row d-flex">
                     <div className="col-md pr-4 d-flex align-items-center">
                       <div className="icon mr-2 d-flex justify-content-center align-items-center"><span className="icon-phone2"></span></div>
-                      <span className="text text-white">+ 1235 2355 98</span>
+                      <span className="text text-white"><i className='bx bxs-phone' ></i>+ 1235 2355 98</span>
                     </div>
                     <div className="col-md pr-4 d-flex align-items-center">
                       <div className="icon mr-2 d-flex justify-content-center align-items-center"><span className="icon-paper-plane"></span></div>
-                      <span className="text text-white">youremail@email.com</span>
+                      <span className="text text-white"><i className='bx bx-paper-plane' ></i>youremail@email.com</span>
                     </div>
                     <div className="col-md-5 pr-4 d-flex align-items-center text-lg-right">
-                      <span className="text text-white">3-5 Business days delivery &amp; Free Returns</span>
+                      <span className="text text-white"><i className='bx bxs-truck' ></i>3-5 Business days delivery &amp; Free Returns</span>
                     </div>
                   </div>
                 </div>
@@ -52,19 +52,19 @@ export default class Header extends React.Component {
           </div>
           <nav className="navbar navbar-expand-lg bg-white">
             <div className="container">
-              <a className="navbar-brand text-body" href="index.html">iWear</a>
+              <a className="navbar-brand" href="index.html">iWear</a>
               <button className="navbar-toggler" onClick={this.toggleNav} type="button" data-toggle="collapse" data-target="header-nav" aria-controls="header-nav" aria-expanded="true" aria-label="Toggle navigation">
-                Menu
+                <i className='bx bx-menu bx-sm align-middle' ></i>
+                <span className="align-middle">Menu</span>
               </button>
 
               <div className={`collapse navbar-collapse ${this.state.navStatus ? 'show' : ''}`} id="header-nav">
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item nav-link active text-secondary">Home</li>
-                  <li className="nav-item nav-link text-secondary">Shop</li>
-                  <li className="nav-item nav-link text-secondary">About</li>
-                  <li className="nav-item nav-link text-secondary">Contact</li>
-                  <li className="nav-item nav-link text-secondary"><i className='bx bxs-cart bx-xs'></i>[0]</li>
-
+                  <li className="nav-item nav-link active">Home</li>
+                  <li className="nav-item nav-link">Shop</li>
+                  <li className="nav-item nav-link">About</li>
+                  <li className="nav-item nav-link">Contact</li>
+                  <li className="nav-item nav-link"><i className='bx bxs-cart bx-xs'></i>[0]</li>
                 </ul>
               </div>
             </div>
