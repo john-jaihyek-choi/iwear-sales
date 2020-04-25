@@ -43,7 +43,7 @@ export default class Footer extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-12 text-center">
-              {/* <p>Copyright &copy; All rights reserved | This template is made with <i className="icon-heart color-danger" aria-hidden="true"></i> by <a href="" target="_blank">Colorlib</a></p> */}
+              <p>Copyright &copy;2020  All images appearing on this site are the property of their respective owners. </p>
             </div>
           </div>
         </div>
