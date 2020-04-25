@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import Home from './home';
+
 // import ProductList from './productList';
 // import ProductDetails from './product-details';
 // import CartSummary from './cartSummary';
