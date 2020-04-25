@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer';
+import Home from './home';
 // import ProductList from './productList';
 // import ProductDetails from './product-details';
 // import CartSummary from './cartSummary';
@@ -11,7 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'catalog',
+        name: 'home',
         params: {}
       },
       cart: []
@@ -93,10 +94,15 @@ export default class App extends React.Component {
   }
 
   render() {
+    let content = null;
+    if (this.state.view.name === 'home') {
+      content = <Home />;
+    }
+
     return (
       <>
         <Header />
-
+        {content}
         <Footer />
       </>
     );
