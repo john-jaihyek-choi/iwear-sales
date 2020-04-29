@@ -94,6 +94,7 @@ footer {
 .carouselTextBox {
     min-height: 580px;
     color: rgb(61, 65, 70);
+    text-shadow: 1px 2px hsl(0, 0%, 100%);
 }
 
 .carouselContent {
@@ -103,6 +104,25 @@ footer {
 
 .carouselContent button {
     border-radius: 50px;
+    color: white;
+}
+
+.opticalCarousel button {
+    background-color: rgb(6, 6, 75);
+}
+
+.opticalCarousel button:hover {
+    background-color: rgb(32, 32, 158);
+    color: white;
+}
+
+.sunglassCarousel button {
+    background-color: rgb(3, 49, 3);
+}
+
+.sunglassCarousel button:hover {
+    background-color: rgb(11, 78, 11);
+    color: white;
 }
 
 @media (max-width: 991.98px) {
@@ -113,6 +133,10 @@ footer {
     .navbar .navbar-nav > .nav-item,
     .navbar-toggler {
         color: white;
+    }
+    .carouselTextBox {
+        text-shadow: 1px 2px rgb(61, 65, 70);
+        color:white
     }
 }
 
