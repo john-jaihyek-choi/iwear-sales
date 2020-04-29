@@ -134,12 +134,21 @@ footer {
     .navbar-toggler {
         color: white;
     }
+    .carouselContent {
+        top: 60%;
+    }
     .carouselTextBox {
         text-shadow: 1px 2px rgb(61, 65, 70);
         color:white
     }
     .carouselTextBox h3 {
         font-size: 1.25rem;
+    }
+    .opticalCarousel .carouselTextBox {
+        text-align: left;
+    }
+    .sunglassCarousel .carouselTextBox {
+        text-align: right;
     }
 }
 
