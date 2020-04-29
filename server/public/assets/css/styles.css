@@ -91,6 +91,10 @@ footer {
     min-height: 550px;
 }
 
+.carouselTextBox {
+    min-height: 550px;
+}
+
 @media (max-width: 991.98px) {
     .navbar {
         background: #000000 !important;

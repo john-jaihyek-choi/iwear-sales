@@ -9,8 +9,8 @@ export default class Home extends React.Component {
     return (
       <OwlCarousel items={1} className="owl-theme" autoplay margin={8} dots={false}>
         <div className="opticalCarousel container-fluid">
-          <div className='row'>
-
+          <div className='carouselTextBox col-lg-6 col-md-6'>
+              test
           </div>
         </div>
         {/* <div className="sunglassCarousel container-fluid">
