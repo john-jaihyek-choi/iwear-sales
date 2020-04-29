@@ -4,7 +4,7 @@ export default class Footer extends React.Component {
 
   render() {
     return (
-      <footer className="bg-light">
+      <footer className="bg-light pb-0">
         <div className="container">
           <div className="row mb-5">
             <div className="col-md">
