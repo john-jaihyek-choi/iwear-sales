@@ -75,6 +75,22 @@ footer {
     font-weight: 400;
 }
 
+.opticalCarousel {
+    background-image: url('/assets/images/background/glassesBackground_2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 65%;
+    min-height: 550px;
+}
+
+.sunglassCarousel {
+    background-image: url('/assets/images/background/glassesBackground_3r.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 40%;
+    min-height: 550px;
+}
+
 @media (max-width: 991.98px) {
     .navbar {
         background: #000000 !important;
