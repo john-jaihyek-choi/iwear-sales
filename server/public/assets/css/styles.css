@@ -93,6 +93,12 @@ footer {
 
 .carouselTextBox {
     min-height: 550px;
+    color: black;
+}
+
+.carouselContent {
+    top: 35%;
+    max-width: 450px;
 }
 
 @media (max-width: 991.98px) {
