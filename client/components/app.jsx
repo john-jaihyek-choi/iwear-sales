@@ -96,9 +96,7 @@ export default class App extends React.Component {
 
   render() {
     let content = null;
-    if (this.state.view.name === 'home') {
-      content = <Home />;
-    }
+    if (this.state.view.name === 'home') content = <Home />;
 
     return (
       <>
