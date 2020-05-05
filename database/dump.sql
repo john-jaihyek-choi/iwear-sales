@@ -16,22 +16,81 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-ALTER TABLE ONLY public.products DROP CONSTRAINT products_pkey;
-ALTER TABLE ONLY public.orders DROP CONSTRAINT orders_pkey;
-ALTER TABLE ONLY public.carts DROP CONSTRAINT carts_pkey;
-ALTER TABLE ONLY public."cartItems" DROP CONSTRAINT "cartItems_pkey";
+ALTER TABLE ONLY public.styles DROP CONSTRAINT styles_fk4;
+ALTER TABLE ONLY public.styles DROP CONSTRAINT styles_fk3;
+ALTER TABLE ONLY public.styles DROP CONSTRAINT styles_fk2;
+ALTER TABLE ONLY public.styles DROP CONSTRAINT styles_fk1;
+ALTER TABLE ONLY public.styles DROP CONSTRAINT styles_fk0;
+ALTER TABLE ONLY public.products DROP CONSTRAINT products_fk2;
+ALTER TABLE ONLY public.products DROP CONSTRAINT products_fk1;
+ALTER TABLE ONLY public.products DROP CONSTRAINT products_fk0;
+ALTER TABLE ONLY public.orders DROP CONSTRAINT orders_fk0;
+ALTER TABLE ONLY public."frameColor" DROP CONSTRAINT "frameColor_fk0";
+ALTER TABLE ONLY public."cartItems" DROP CONSTRAINT "cartItems_fk1";
+ALTER TABLE ONLY public."cartItems" DROP CONSTRAINT "cartItems_fk0";
+ALTER TABLE ONLY public.styles DROP CONSTRAINT styles_pk;
+ALTER TABLE ONLY public.styles DROP CONSTRAINT styles_name_key;
+ALTER TABLE ONLY public.products DROP CONSTRAINT "products_productSKU_key";
+ALTER TABLE ONLY public.products DROP CONSTRAINT products_pk;
+ALTER TABLE ONLY public.orders DROP CONSTRAINT orders_pk;
+ALTER TABLE ONLY public."lensType" DROP CONSTRAINT "lensType_type_key";
+ALTER TABLE ONLY public."lensType" DROP CONSTRAINT "lensType_pk";
+ALTER TABLE ONLY public."glassesType" DROP CONSTRAINT "glassesType_pk";
+ALTER TABLE ONLY public.gender DROP CONSTRAINT gender_pk;
+ALTER TABLE ONLY public.gender DROP CONSTRAINT gender_gender_key;
+ALTER TABLE ONLY public."frameStyle" DROP CONSTRAINT "frameStyle_style_key";
+ALTER TABLE ONLY public."frameStyle" DROP CONSTRAINT "frameStyle_pk";
+ALTER TABLE ONLY public."frameMaterial" DROP CONSTRAINT "frameMaterial_pk";
+ALTER TABLE ONLY public."frameMaterial" DROP CONSTRAINT "frameMaterial_material_key";
+ALTER TABLE ONLY public."frameColor" DROP CONSTRAINT "frameColor_pk";
+ALTER TABLE ONLY public."frameColor" DROP CONSTRAINT "frameColor_color_key";
+ALTER TABLE ONLY public."frameColor" DROP CONSTRAINT "frameColor_colorName_key";
+ALTER TABLE ONLY public."colorCategory" DROP CONSTRAINT "colorCategory_pk";
+ALTER TABLE ONLY public."colorCategory" DROP CONSTRAINT "colorCategory_category_key";
+ALTER TABLE ONLY public.carts DROP CONSTRAINT carts_pk;
+ALTER TABLE ONLY public."cartItems" DROP CONSTRAINT "cartItems_pk";
+ALTER TABLE ONLY public."badgeStatus" DROP CONSTRAINT "badgeStatus_pk";
+ALTER TABLE ONLY public."badgeStatus" DROP CONSTRAINT "badgeStatus_badgeStatus_key";
+ALTER TABLE public.styles ALTER COLUMN "styleId" DROP DEFAULT;
 ALTER TABLE public.products ALTER COLUMN "productId" DROP DEFAULT;
 ALTER TABLE public.orders ALTER COLUMN "orderId" DROP DEFAULT;
+ALTER TABLE public."lensType" ALTER COLUMN "lensTypeId" DROP DEFAULT;
+ALTER TABLE public."glassesType" ALTER COLUMN "glassesTypeId" DROP DEFAULT;
+ALTER TABLE public.gender ALTER COLUMN "genderId" DROP DEFAULT;
+ALTER TABLE public."frameStyle" ALTER COLUMN "frameStyleId" DROP DEFAULT;
+ALTER TABLE public."frameMaterial" ALTER COLUMN "frameMaterialId" DROP DEFAULT;
+ALTER TABLE public."frameColor" ALTER COLUMN "frameColorId" DROP DEFAULT;
+ALTER TABLE public."colorCategory" ALTER COLUMN "colorCategoryId" DROP DEFAULT;
 ALTER TABLE public.carts ALTER COLUMN "cartId" DROP DEFAULT;
 ALTER TABLE public."cartItems" ALTER COLUMN "cartItemId" DROP DEFAULT;
+ALTER TABLE public."badgeStatus" ALTER COLUMN "badgeStatusId" DROP DEFAULT;
+DROP SEQUENCE public."styles_styleId_seq";
+DROP TABLE public.styles;
 DROP SEQUENCE public."products_productId_seq";
 DROP TABLE public.products;
 DROP SEQUENCE public."orders_orderId_seq";
 DROP TABLE public.orders;
+DROP SEQUENCE public."lensType_lensTypeId_seq";
+DROP TABLE public."lensType";
+DROP SEQUENCE public."glassesType_glassesTypeId_seq";
+DROP TABLE public."glassesType";
+DROP SEQUENCE public."gender_genderId_seq";
+DROP TABLE public.gender;
+DROP SEQUENCE public."frameStyle_frameStyleId_seq";
+DROP TABLE public."frameStyle";
+DROP SEQUENCE public."frameMaterial_material_seq";
+DROP SEQUENCE public."frameMaterial_frameMaterialId_seq";
+DROP TABLE public."frameMaterial";
+DROP SEQUENCE public."frameColor_frameColorId_seq";
+DROP TABLE public."frameColor";
+DROP SEQUENCE public."colorCategory_colorCategoryId_seq";
+DROP TABLE public."colorCategory";
 DROP SEQUENCE public."carts_cartId_seq";
 DROP TABLE public.carts;
 DROP SEQUENCE public."cartItems_cartItemId_seq";
 DROP TABLE public."cartItems";
+DROP SEQUENCE public."badgeStatus_badgeStatusId_seq";
+DROP TABLE public."badgeStatus";
 DROP EXTENSION plpgsql;
 DROP SCHEMA public;
 --
@@ -67,14 +126,43 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: badgeStatus; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."badgeStatus" (
+    "badgeStatusId" integer NOT NULL,
+    "badgeStatus" text NOT NULL
+);
+
+
+--
+-- Name: badgeStatus_badgeStatusId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."badgeStatus_badgeStatusId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: badgeStatus_badgeStatusId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."badgeStatus_badgeStatusId_seq" OWNED BY public."badgeStatus"."badgeStatusId";
+
+
+--
 -- Name: cartItems; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public."cartItems" (
     "cartItemId" integer NOT NULL,
     "cartId" integer NOT NULL,
-    "productId" integer NOT NULL,
-    price integer NOT NULL
+    "productId" integer NOT NULL
 );
 
 
@@ -104,7 +192,7 @@ ALTER SEQUENCE public."cartItems_cartItemId_seq" OWNED BY public."cartItems"."ca
 
 CREATE TABLE public.carts (
     "cartId" integer NOT NULL,
-    "createdAt" timestamp(6) with time zone DEFAULT now() NOT NULL
+    "createdAt" timestamp with time zone DEFAULT '2020-05-04 23:32:03.139185+00'::timestamp with time zone NOT NULL
 );
 
 
@@ -129,6 +217,238 @@ ALTER SEQUENCE public."carts_cartId_seq" OWNED BY public.carts."cartId";
 
 
 --
+-- Name: colorCategory; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."colorCategory" (
+    "colorCategoryId" integer NOT NULL,
+    category text NOT NULL
+);
+
+
+--
+-- Name: colorCategory_colorCategoryId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."colorCategory_colorCategoryId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: colorCategory_colorCategoryId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."colorCategory_colorCategoryId_seq" OWNED BY public."colorCategory"."colorCategoryId";
+
+
+--
+-- Name: frameColor; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."frameColor" (
+    "frameColorId" integer NOT NULL,
+    "colorAbbr" text NOT NULL,
+    "colorCategoryId" integer NOT NULL,
+    "colorName" text NOT NULL
+);
+
+
+--
+-- Name: frameColor_frameColorId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."frameColor_frameColorId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: frameColor_frameColorId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."frameColor_frameColorId_seq" OWNED BY public."frameColor"."frameColorId";
+
+
+--
+-- Name: frameMaterial; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."frameMaterial" (
+    "frameMaterialId" integer NOT NULL,
+    material text NOT NULL
+);
+
+
+--
+-- Name: frameMaterial_frameMaterialId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."frameMaterial_frameMaterialId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: frameMaterial_frameMaterialId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."frameMaterial_frameMaterialId_seq" OWNED BY public."frameMaterial"."frameMaterialId";
+
+
+--
+-- Name: frameMaterial_material_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."frameMaterial_material_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: frameMaterial_material_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."frameMaterial_material_seq" OWNED BY public."frameMaterial".material;
+
+
+--
+-- Name: frameStyle; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."frameStyle" (
+    "frameStyleId" integer NOT NULL,
+    style text NOT NULL
+);
+
+
+--
+-- Name: frameStyle_frameStyleId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."frameStyle_frameStyleId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: frameStyle_frameStyleId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."frameStyle_frameStyleId_seq" OWNED BY public."frameStyle"."frameStyleId";
+
+
+--
+-- Name: gender; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.gender (
+    "genderId" integer NOT NULL,
+    gender text NOT NULL
+);
+
+
+--
+-- Name: gender_genderId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."gender_genderId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: gender_genderId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."gender_genderId_seq" OWNED BY public.gender."genderId";
+
+
+--
+-- Name: glassesType; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."glassesType" (
+    "glassesTypeId" integer NOT NULL,
+    "glassesType" text NOT NULL
+);
+
+
+--
+-- Name: glassesType_glassesTypeId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."glassesType_glassesTypeId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: glassesType_glassesTypeId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."glassesType_glassesTypeId_seq" OWNED BY public."glassesType"."glassesTypeId";
+
+
+--
+-- Name: lensType; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."lensType" (
+    "lensTypeId" integer NOT NULL,
+    type text NOT NULL
+);
+
+
+--
+-- Name: lensType_lensTypeId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."lensType_lensTypeId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: lensType_lensTypeId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."lensType_lensTypeId_seq" OWNED BY public."lensType"."lensTypeId";
+
+
+--
 -- Name: orders; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -138,7 +458,8 @@ CREATE TABLE public.orders (
     name text NOT NULL,
     "creditCard" text NOT NULL,
     "shippingAddress" text NOT NULL,
-    "createdAt" timestamp(6) with time zone DEFAULT now() NOT NULL
+    "billingAddress" text NOT NULL,
+    "createdAt" timestamp with time zone DEFAULT '2020-05-04 23:32:03.139185+00'::timestamp with time zone NOT NULL
 );
 
 
@@ -168,11 +489,12 @@ ALTER SEQUENCE public."orders_orderId_seq" OWNED BY public.orders."orderId";
 
 CREATE TABLE public.products (
     "productId" integer NOT NULL,
-    name text NOT NULL,
-    price integer NOT NULL,
-    image text NOT NULL,
-    "shortDescription" text NOT NULL,
-    "longDescription" text NOT NULL
+    "styleId" integer NOT NULL,
+    "productSKU" text NOT NULL,
+    "frameColorId" integer NOT NULL,
+    "badgeStatusId" integer NOT NULL,
+    image1 path,
+    image2 path
 );
 
 
@@ -197,6 +519,52 @@ ALTER SEQUENCE public."products_productId_seq" OWNED BY public.products."product
 
 
 --
+-- Name: styles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.styles (
+    "styleId" integer NOT NULL,
+    name text NOT NULL,
+    price integer NOT NULL,
+    description text NOT NULL,
+    "glassesTypeId" integer NOT NULL,
+    "genderId" integer NOT NULL,
+    "lensTypeId" integer NOT NULL,
+    "frameMaterialId" integer NOT NULL,
+    "frameStyleId" integer NOT NULL,
+    "availColors" json NOT NULL,
+    dimensions json NOT NULL
+);
+
+
+--
+-- Name: styles_styleId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."styles_styleId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: styles_styleId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."styles_styleId_seq" OWNED BY public.styles."styleId";
+
+
+--
+-- Name: badgeStatus badgeStatusId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."badgeStatus" ALTER COLUMN "badgeStatusId" SET DEFAULT nextval('public."badgeStatus_badgeStatusId_seq"'::regclass);
+
+
+--
 -- Name: cartItems cartItemId; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -208,6 +576,55 @@ ALTER TABLE ONLY public."cartItems" ALTER COLUMN "cartItemId" SET DEFAULT nextva
 --
 
 ALTER TABLE ONLY public.carts ALTER COLUMN "cartId" SET DEFAULT nextval('public."carts_cartId_seq"'::regclass);
+
+
+--
+-- Name: colorCategory colorCategoryId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."colorCategory" ALTER COLUMN "colorCategoryId" SET DEFAULT nextval('public."colorCategory_colorCategoryId_seq"'::regclass);
+
+
+--
+-- Name: frameColor frameColorId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameColor" ALTER COLUMN "frameColorId" SET DEFAULT nextval('public."frameColor_frameColorId_seq"'::regclass);
+
+
+--
+-- Name: frameMaterial frameMaterialId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameMaterial" ALTER COLUMN "frameMaterialId" SET DEFAULT nextval('public."frameMaterial_frameMaterialId_seq"'::regclass);
+
+
+--
+-- Name: frameStyle frameStyleId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameStyle" ALTER COLUMN "frameStyleId" SET DEFAULT nextval('public."frameStyle_frameStyleId_seq"'::regclass);
+
+
+--
+-- Name: gender genderId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.gender ALTER COLUMN "genderId" SET DEFAULT nextval('public."gender_genderId_seq"'::regclass);
+
+
+--
+-- Name: glassesType glassesTypeId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."glassesType" ALTER COLUMN "glassesTypeId" SET DEFAULT nextval('public."glassesType_glassesTypeId_seq"'::regclass);
+
+
+--
+-- Name: lensType lensTypeId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."lensType" ALTER COLUMN "lensTypeId" SET DEFAULT nextval('public."lensType_lensTypeId_seq"'::regclass);
 
 
 --
@@ -225,90 +642,29 @@ ALTER TABLE ONLY public.products ALTER COLUMN "productId" SET DEFAULT nextval('p
 
 
 --
+-- Name: styles styleId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.styles ALTER COLUMN "styleId" SET DEFAULT nextval('public."styles_styleId_seq"'::regclass);
+
+
+--
+-- Data for Name: badgeStatus; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."badgeStatus" ("badgeStatusId", "badgeStatus") FROM stdin;
+1	none
+2	new
+3	blue light
+4	polarized
+\.
+
+
+--
 -- Data for Name: cartItems; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
-2	35	1	2999
-3	36	1	2999
-4	37	1	2999
-5	38	1	2999
-6	39	1	2999
-7	40	1	2999
-8	41	1	2999
-9	42	1	2999
-10	43	2	2595
-11	44	2	2595
-12	45	2	2595
-13	46	2	2595
-14	47	2	2595
-15	48	2	2595
-16	49	2	2595
-17	50	2	2595
-18	51	2	2595
-19	52	3	2900
-20	53	3	2900
-21	54	1	2999
-22	55	1	2999
-23	56	1	2999
-24	57	1	2999
-25	58	4	999
-26	59	4	999
-27	60	1	2999
-28	61	4	999
-29	62	1	2999
-30	63	1	2999
-32	86	1	2999
-33	87	1	2999
-34	88	1	2999
-35	89	1	2999
-36	90	1	2999
-37	91	1	2999
-38	92	1	2999
-39	93	1	2999
-40	94	1	2999
-41	95	2	2595
-42	96	2	2595
-44	99	2	2595
-46	100	2	2595
-54	100	2	2595
-55	100	2	2595
-56	100	2	2595
-57	100	2	2595
-58	100	2	2595
-59	101	1	2999
-61	101	1	2999
-62	101	1	2999
-67	101	1	2999
-68	102	1	2999
-69	102	1	2999
-70	102	2	2595
-71	102	1	2999
-72	102	1	2999
-73	102	1	2999
-74	102	1	2999
-75	103	3	2900
-76	103	3	2900
-77	104	3	2900
-78	104	3	2900
-79	104	3	2900
-80	104	3	2900
-81	104	3	2900
-82	104	3	2900
-83	104	3	2900
-84	104	3	2900
-85	104	3	2900
-86	104	3	2900
-87	104	3	2900
-88	104	3	2900
-89	104	3	2900
-90	104	3	2900
-91	104	3	2900
-92	104	3	2900
-93	104	3	2900
-94	102	3	2900
-95	105	1	2999
-96	105	2	2595
+COPY public."cartItems" ("cartItemId", "cartId", "productId") FROM stdin;
 \.
 
 
@@ -317,111 +673,98 @@ COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
 --
 
 COPY public.carts ("cartId", "createdAt") FROM stdin;
-1	2020-03-11 01:24:16.286956+00
-2	2020-03-11 01:26:21.063365+00
-3	2020-03-11 01:27:41.309183+00
-4	2020-03-11 01:29:25.918907+00
-5	2020-03-11 01:29:36.927461+00
-6	2020-03-11 01:38:53.685748+00
-7	2020-03-11 01:39:53.058185+00
-8	2020-03-11 01:43:10.287155+00
-9	2020-03-11 01:44:01.315408+00
-10	2020-03-11 01:44:49.11848+00
-11	2020-03-11 01:45:06.557854+00
-12	2020-03-11 01:45:14.195306+00
-13	2020-03-11 01:45:31.768258+00
-14	2020-03-11 01:46:01.226366+00
-15	2020-03-11 01:47:33.432627+00
-16	2020-03-11 01:47:57.73593+00
-17	2020-03-11 01:50:02.810388+00
-18	2020-03-11 01:51:13.59196+00
-19	2020-03-11 01:52:17.304153+00
-20	2020-03-11 01:54:26.104004+00
-21	2020-03-11 01:55:12.438145+00
-22	2020-03-11 01:56:03.343465+00
-23	2020-03-11 01:56:21.239407+00
-24	2020-03-11 01:58:36.367434+00
-25	2020-03-11 02:01:05.902076+00
-26	2020-03-11 02:01:22.00889+00
-27	2020-03-11 02:02:36.018568+00
-28	2020-03-11 02:03:29.489361+00
-29	2020-03-11 02:03:43.73959+00
-30	2020-03-11 02:11:34.684031+00
-31	2020-03-11 02:15:59.524578+00
-32	2020-03-11 02:18:42.121153+00
-33	2020-03-11 02:18:57.408356+00
-34	2020-03-11 02:21:10.991706+00
-35	2020-03-11 02:21:45.962427+00
-36	2020-03-11 02:22:19.596295+00
-37	2020-03-11 02:30:27.976912+00
-38	2020-03-11 02:35:53.580093+00
-39	2020-03-11 02:37:55.628461+00
-40	2020-03-11 02:39:49.02173+00
-41	2020-03-11 02:40:43.507144+00
-42	2020-03-11 02:41:15.308261+00
-43	2020-03-11 02:46:31.087785+00
-44	2020-03-11 02:47:47.27803+00
-45	2020-03-11 02:49:07.844062+00
-46	2020-03-11 02:50:12.184454+00
-47	2020-03-11 02:50:46.624939+00
-48	2020-03-11 02:51:07.936531+00
-49	2020-03-11 02:52:14.998483+00
-50	2020-03-11 02:53:07.06706+00
-51	2020-03-11 02:53:48.438119+00
-52	2020-03-11 02:54:46.458826+00
-53	2020-03-11 02:55:09.04796+00
-54	2020-03-11 02:55:42.645226+00
-55	2020-03-11 02:56:07.411659+00
-56	2020-03-11 02:56:21.037992+00
-57	2020-03-11 02:56:44.841444+00
-58	2020-03-11 03:01:02.748252+00
-59	2020-03-11 03:01:41.151183+00
-60	2020-03-11 03:13:16.228136+00
-61	2020-03-11 03:16:33.100475+00
-62	2020-03-11 03:16:39.811706+00
-63	2020-03-11 03:22:28.987147+00
-64	2020-03-11 03:34:07.767501+00
-65	2020-03-11 03:34:28.066162+00
-66	2020-03-11 03:36:41.502074+00
-67	2020-03-11 03:42:05.917833+00
-68	2020-03-11 03:42:32.650649+00
-69	2020-03-11 03:42:47.568508+00
-70	2020-03-11 03:43:03.325002+00
-71	2020-03-11 03:43:32.570861+00
-72	2020-03-11 03:43:54.077277+00
-73	2020-03-11 03:44:25.229018+00
-74	2020-03-11 03:44:37.210254+00
-75	2020-03-11 03:44:53.637239+00
-76	2020-03-11 03:46:14.954747+00
-77	2020-03-11 03:48:29.978538+00
-78	2020-03-11 03:49:25.696879+00
-79	2020-03-11 03:50:12.261408+00
-80	2020-03-11 03:52:02.43945+00
-81	2020-03-11 03:52:11.827411+00
-82	2020-03-11 03:52:41.540266+00
-83	2020-03-11 03:53:00.038502+00
-84	2020-03-11 03:53:45.927723+00
-85	2020-03-11 03:53:59.719464+00
-86	2020-03-11 03:57:59.910395+00
-87	2020-03-11 03:59:18.503076+00
-88	2020-03-11 03:59:51.824548+00
-89	2020-03-11 04:10:41.065196+00
-90	2020-03-11 04:10:56.839318+00
-91	2020-03-11 04:13:30.195608+00
-92	2020-03-11 04:13:43.699625+00
-93	2020-03-11 04:14:24.278062+00
-94	2020-03-11 04:16:14.638511+00
-95	2020-03-11 04:16:47.00915+00
-96	2020-03-11 04:19:43.947248+00
-97	2020-03-11 06:51:50.275847+00
-98	2020-03-11 06:52:42.198383+00
-99	2020-03-11 06:52:54.862356+00
-100	2020-03-11 07:00:44.743893+00
-101	2020-03-11 17:30:32.791218+00
-102	2020-03-11 19:19:14.613218+00
-103	2020-03-11 19:27:24.82547+00
-104	2020-03-11 19:28:30.265014+00
-105	2020-03-11 22:14:59.151323+00
+\.
+
+
+--
+-- Data for Name: colorCategory; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."colorCategory" ("colorCategoryId", category) FROM stdin;
+1	black
+2	blue
+3	brown
+4	clear
+5	gold
+6	silver
+\.
+
+
+--
+-- Data for Name: frameColor; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."frameColor" ("frameColorId", "colorAbbr", "colorCategoryId", "colorName") FROM stdin;
+1	b	1	black
+2	c	4	clear
+3	gg	5	garnet gold
+4	g	5	gold
+5	mb	1	matte black
+6	nb	2	navy blue
+7	og	5	onyx gold
+8	os	6	onyx silver
+9	s	6	silver
+10	tb	3	tortoise brown
+\.
+
+
+--
+-- Data for Name: frameMaterial; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."frameMaterial" ("frameMaterialId", material) FROM stdin;
+1	metal
+2	plastic
+3	titanium
+4	acetate
+5	polycarbonate
+\.
+
+
+--
+-- Data for Name: frameStyle; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."frameStyle" ("frameStyleId", style) FROM stdin;
+1	aviator
+2	cat-eye
+3	rimless
+4	round
+5	semi-rimless
+6	square
+\.
+
+
+--
+-- Data for Name: gender; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.gender ("genderId", gender) FROM stdin;
+2	male
+3	female
+4	unisex
+\.
+
+
+--
+-- Data for Name: glassesType; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."glassesType" ("glassesTypeId", "glassesType") FROM stdin;
+1	optical
+2	sunglasses
+\.
+
+
+--
+-- Data for Name: lensType; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."lensType" ("lensTypeId", type) FROM stdin;
+1	regular
+2	blue light
+3	polarized
+4	mirrored
 \.
 
 
@@ -429,7 +772,7 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 -- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", "createdAt") FROM stdin;
+COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", "billingAddress", "createdAt") FROM stdin;
 \.
 
 
@@ -437,28 +780,130 @@ COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", 
 -- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.products ("productId", name, price, image, "shortDescription", "longDescription") FROM stdin;
-1	Shake Weight	2999	/images/shake-weight.jpg	Dynamic Inertia technology ignites muscles in arms, shoulders, and chest.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-2	ShamWow	2595	/images/shamwow.jpg	It's like a chamois, towel, and sponge, all in one! Soaks up to 10x it's weight in any liquid!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-3	Snuggie	2900	/images/snuggie.jpg	Super-Soft Fleece with pockets! One Size fits all Adults! Keeps you Warm & Your Hands-Free!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-4	Wax Vac	999	/images/wax-vac.jpg	Gentle way to remove ear wax. Safe and hygienic. Reduces the risk of painful infections.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-5	Ostrich Pillow	9900	/images/ostrich-pillow.jpg	Create your own snugly space in the world and feel-good anywhere with the ultimate cocoon pillow.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-6	Tater Mitts	830	/images/tater-mitts.jpg	8 Seconds is all you need with Tater Mitts. Quickly and easily prepare all your favorite potato dishes with Tater Mitts.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
+COPY public.products ("productId", "styleId", "productSKU", "frameColorId", "badgeStatusId", image1, image2) FROM stdin;
+1	1	lcf-19a-045_c	2	1	\N	\N
+2	1	lcf-19a-045_tb	10	2	\N	\N
+3	2	lmf-19s-378_b	1	3	\N	\N
+4	2	lmf-19s-378_nb	6	4	\N	\N
+5	3	lmf-19s-378_gg	3	1	\N	\N
+6	3	lmf-19s-378_og	7	2	\N	\N
+7	4	mmf-18s-095_mb	5	3	\N	\N
+8	5	mrf-18s-027_og	7	4	\N	\N
+9	6	umn-20s-048_g	4	1	\N	\N
+10	6	umn-20s-048_og	7	2	\N	\N
+11	7	urf-19a-036_os	8	3	\N	\N
+12	7	urf-19a-036_s	9	4	\N	\N
+13	8	elliot_g	4	1	\N	\N
+14	8	elliot_s	9	2	\N	\N
+15	9	nevada_g	4	3	\N	\N
+16	9	nevada_s	9	4	\N	\N
+17	10	palma_g	4	1	\N	\N
+18	10	palma_s	9	2	\N	\N
+19	11	ariel_b	1	3	\N	\N
+20	11	ariel_g	4	4	\N	\N
+21	12	morrell_g	4	1	\N	\N
+22	12	morrell_s	9	2	\N	\N
+23	13	scout_g	4	3	\N	\N
+24	13	scout_s	9	4	\N	\N
 \.
+
+
+--
+-- Data for Name: styles; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.styles ("styleId", name, price, description, "glassesTypeId", "genderId", "lensTypeId", "frameMaterialId", "frameStyleId", "availColors", dimensions) FROM stdin;
+1	lcf-19a-045	12000	Love to rock a classic look? LCF-19A-045 is the perfect pair of blue light glasses for you! LCF-19A-045 combines a classic look with five barrel hinges, lightweight polycarbonate frame and blue light blocking lenses.	1	3	2	5	4	["c","tb"]	{"LW": 50, "LH": 44, "FW": 141.5, "T": 140}
+2	lmf-17s-u159	12000	Break barriers and start a style revolution with these black steel and acetate eyeglasses. This classically versatile frame features a black stainless steel frame front with a keyhole nose bridge. High quality Italian hinges connect the hand crafted premium acetate beige colored temples. Let the fusion of different earth elements permeate your presence so you can break free from boring and claim your style independence.	1	3	1	4	4	["b","n"]	{"LW": 46, "LH": 42, "FW": 132.5, "T": 140}
+3	lmf-19s-378	12000	Set inside the classic round eyewire of LMF-19S-378 is a modern update: an ultra-thin, complementary coil of acetate. Made in Italy.	1	3	1	4	4	["gg","og"]	{"LW": 51, "LH": 46, "FW": 138, "T": 150}
+4	mmf-18s-095	12000	Versatility comes easy when you’ve got a frame like MMF-18S-095. Constructed in Japan, this frame features ultra-thin (and almost invisible) metalwork encircling each round lens.	1	2	2	1	4	["mb"]	{"LW": 52, "LH": 47, "FW": 140, "T": 150}
+5	mrf-18s-027	12000	On the hunt for a classic wire frame look with a little edge? Look no further than MRF-18S-027's soft angled curves and slightly flattened rims.	1	2	1	1	6	["og"]	{"LW": 54, "LH": 45, "FW": 140, "T": 144}
+6	umn-20s-048	12000	With its classy finish, UMN-20S-048's square lenses and unique nose bridge reach a whole new level of "eyecatching". Adjustable nose pads and lightweight temple arms keep this iconic look both functional and fashionable.	1	2	2	3	6	["g","og"]	{"LW": 56, "LH": 41, "FW": 138, "T": 150}
+7	urf-19a-036	12000	Become a 21st-century saint of style with URF-19A-036. The contrast between sleek, metal and retro outsize shaped lenses makes these full-rim eyeglasses uniquely trendy. The smooth, streamlined design is complemented by a fine nose bridge and black temple tips to create a frame that gives an instant, edgy style boost.	1	2	1	1	4	["os","s"]	{"LW": 47.5, "LH": 40, "FW": 132, "T": 150}
+8	elliot	8000	The Elliot puts a modern spin on the classic aviator with its round shape. This modern style is suitable for women. Choose from the pink and yellow lens! If you are looking for the absolute best in style and affordability, iWear has the styles that you want.	2	3	4	1	1	["g","s"]	{"LW": 62, "LH": 59, "FW": 130, "T": 149}
+9	nevada	8000	Step into the sun with confidence in the round, mirrored Nevada frame. These shades give a modern look to a retro-style frame. Choose from the green, blue, or pink lenses, each enveloped in a classy gold metal frame to ensure you'll stand out in every crowd.	2	3	4	1	4	["g","s"]	{"LW": 53, "LH": 50, "FW": 135, "T": 148}
+10	palma	8000	Palma is a trendsetting angular cat-eye design combined with sleek, contemporary lines. Slightly oversized for ultimate protection for your eyes!	2	3	1	1	2	["g","s"]	{"LW": 61, "LH": 49, "FW": 146, "T": 145}
+11	ariel	8000	Ariel is a stylish and retro design suitable for all face shapes. The double bridge bar gives these sunglasses an even more retro, vintage look! Choose from gold, silver or black frame and take your vintage style to the next level.	2	2	3	5	1	["b","g"]	{"LW": 54, "LH": 50, "FW": 134, "T": 148}
+12	morrell	8000	Change up your look with these Morrell sunglasses. The modern and metal detailing add a funky twist to this stylish, acetate frame.	2	2	3	1	5	["g","s"]	{"LW": 50, "LH": 46, "FW": 141, "T": 138}
+13	scout	8000	The classic aviator style is captured beautifully in these double-barred, metal frame and is teamed with a polarized lens that will cut through glare magnificently. Polarized lenses offer you ultimate protection while enjoying outdoor activities. These aviator shades are not the ones you want to miss out on! Classic design for suited for every occasion.	2	2	3	1	1	["g","s"]	{"LW": 60, "LH": 53, "FW": 147, "T": 145}
+\.
+
+
+--
+-- Name: badgeStatus_badgeStatusId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."badgeStatus_badgeStatusId_seq"', 4, true);
 
 
 --
 -- Name: cartItems_cartItemId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 96, true);
+SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 1, false);
 
 
 --
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 105, true);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 1, true);
+
+
+--
+-- Name: colorCategory_colorCategoryId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."colorCategory_colorCategoryId_seq"', 6, true);
+
+
+--
+-- Name: frameColor_frameColorId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."frameColor_frameColorId_seq"', 10, true);
+
+
+--
+-- Name: frameMaterial_frameMaterialId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."frameMaterial_frameMaterialId_seq"', 5, true);
+
+
+--
+-- Name: frameMaterial_material_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."frameMaterial_material_seq"', 1, false);
+
+
+--
+-- Name: frameStyle_frameStyleId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."frameStyle_frameStyleId_seq"', 6, true);
+
+
+--
+-- Name: gender_genderId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."gender_genderId_seq"', 4, true);
+
+
+--
+-- Name: glassesType_glassesTypeId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."glassesType_glassesTypeId_seq"', 2, true);
+
+
+--
+-- Name: lensType_lensTypeId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."lensType_lensTypeId_seq"', 4, true);
 
 
 --
@@ -472,39 +917,294 @@ SELECT pg_catalog.setval('public."orders_orderId_seq"', 1, false);
 -- Name: products_productId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."products_productId_seq"', 1, false);
+SELECT pg_catalog.setval('public."products_productId_seq"', 24, true);
 
 
 --
--- Name: cartItems cartItems_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: styles_styleId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."styles_styleId_seq"', 13, true);
+
+
+--
+-- Name: badgeStatus badgeStatus_badgeStatus_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."badgeStatus"
+    ADD CONSTRAINT "badgeStatus_badgeStatus_key" UNIQUE ("badgeStatus");
+
+
+--
+-- Name: badgeStatus badgeStatus_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."badgeStatus"
+    ADD CONSTRAINT "badgeStatus_pk" PRIMARY KEY ("badgeStatusId");
+
+
+--
+-- Name: cartItems cartItems_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public."cartItems"
-    ADD CONSTRAINT "cartItems_pkey" PRIMARY KEY ("cartItemId");
+    ADD CONSTRAINT "cartItems_pk" PRIMARY KEY ("cartItemId");
 
 
 --
--- Name: carts carts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: carts carts_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.carts
-    ADD CONSTRAINT carts_pkey PRIMARY KEY ("cartId");
+    ADD CONSTRAINT carts_pk PRIMARY KEY ("cartId");
 
 
 --
--- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: colorCategory colorCategory_category_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."colorCategory"
+    ADD CONSTRAINT "colorCategory_category_key" UNIQUE (category);
+
+
+--
+-- Name: colorCategory colorCategory_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."colorCategory"
+    ADD CONSTRAINT "colorCategory_pk" PRIMARY KEY ("colorCategoryId");
+
+
+--
+-- Name: frameColor frameColor_colorName_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameColor"
+    ADD CONSTRAINT "frameColor_colorName_key" UNIQUE ("colorName");
+
+
+--
+-- Name: frameColor frameColor_color_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameColor"
+    ADD CONSTRAINT "frameColor_color_key" UNIQUE ("colorAbbr");
+
+
+--
+-- Name: frameColor frameColor_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameColor"
+    ADD CONSTRAINT "frameColor_pk" PRIMARY KEY ("frameColorId");
+
+
+--
+-- Name: frameMaterial frameMaterial_material_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameMaterial"
+    ADD CONSTRAINT "frameMaterial_material_key" UNIQUE (material);
+
+
+--
+-- Name: frameMaterial frameMaterial_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameMaterial"
+    ADD CONSTRAINT "frameMaterial_pk" PRIMARY KEY ("frameMaterialId");
+
+
+--
+-- Name: frameStyle frameStyle_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameStyle"
+    ADD CONSTRAINT "frameStyle_pk" PRIMARY KEY ("frameStyleId");
+
+
+--
+-- Name: frameStyle frameStyle_style_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameStyle"
+    ADD CONSTRAINT "frameStyle_style_key" UNIQUE (style);
+
+
+--
+-- Name: gender gender_gender_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.gender
+    ADD CONSTRAINT gender_gender_key UNIQUE (gender);
+
+
+--
+-- Name: gender gender_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.gender
+    ADD CONSTRAINT gender_pk PRIMARY KEY ("genderId");
+
+
+--
+-- Name: glassesType glassesType_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."glassesType"
+    ADD CONSTRAINT "glassesType_pk" PRIMARY KEY ("glassesTypeId");
+
+
+--
+-- Name: lensType lensType_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."lensType"
+    ADD CONSTRAINT "lensType_pk" PRIMARY KEY ("lensTypeId");
+
+
+--
+-- Name: lensType lensType_type_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."lensType"
+    ADD CONSTRAINT "lensType_type_key" UNIQUE (type);
+
+
+--
+-- Name: orders orders_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.orders
-    ADD CONSTRAINT orders_pkey PRIMARY KEY ("orderId");
+    ADD CONSTRAINT orders_pk PRIMARY KEY ("orderId");
 
 
 --
--- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: products products_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.products
-    ADD CONSTRAINT products_pkey PRIMARY KEY ("productId");
+    ADD CONSTRAINT products_pk PRIMARY KEY ("productId");
+
+
+--
+-- Name: products products_productSKU_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT "products_productSKU_key" UNIQUE ("productSKU");
+
+
+--
+-- Name: styles styles_name_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.styles
+    ADD CONSTRAINT styles_name_key UNIQUE (name);
+
+
+--
+-- Name: styles styles_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.styles
+    ADD CONSTRAINT styles_pk PRIMARY KEY ("styleId");
+
+
+--
+-- Name: cartItems cartItems_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."cartItems"
+    ADD CONSTRAINT "cartItems_fk0" FOREIGN KEY ("cartId") REFERENCES public.carts("cartId");
+
+
+--
+-- Name: cartItems cartItems_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."cartItems"
+    ADD CONSTRAINT "cartItems_fk1" FOREIGN KEY ("productId") REFERENCES public.products("productId");
+
+
+--
+-- Name: frameColor frameColor_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."frameColor"
+    ADD CONSTRAINT "frameColor_fk0" FOREIGN KEY ("colorCategoryId") REFERENCES public."colorCategory"("colorCategoryId");
+
+
+--
+-- Name: orders orders_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_fk0 FOREIGN KEY ("cartId") REFERENCES public.carts("cartId");
+
+
+--
+-- Name: products products_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_fk0 FOREIGN KEY ("styleId") REFERENCES public.styles("styleId");
+
+
+--
+-- Name: products products_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_fk1 FOREIGN KEY ("frameColorId") REFERENCES public."frameColor"("frameColorId");
+
+
+--
+-- Name: products products_fk2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_fk2 FOREIGN KEY ("badgeStatusId") REFERENCES public."badgeStatus"("badgeStatusId");
+
+
+--
+-- Name: styles styles_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.styles
+    ADD CONSTRAINT styles_fk0 FOREIGN KEY ("glassesTypeId") REFERENCES public."glassesType"("glassesTypeId");
+
+
+--
+-- Name: styles styles_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.styles
+    ADD CONSTRAINT styles_fk1 FOREIGN KEY ("genderId") REFERENCES public.gender("genderId");
+
+
+--
+-- Name: styles styles_fk2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.styles
+    ADD CONSTRAINT styles_fk2 FOREIGN KEY ("lensTypeId") REFERENCES public."lensType"("lensTypeId");
+
+
+--
+-- Name: styles styles_fk3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.styles
+    ADD CONSTRAINT styles_fk3 FOREIGN KEY ("frameMaterialId") REFERENCES public."frameMaterial"("frameMaterialId");
+
+
+--
+-- Name: styles styles_fk4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.styles
+    ADD CONSTRAINT styles_fk4 FOREIGN KEY ("frameStyleId") REFERENCES public."frameStyle"("frameStyleId");
 
 
 --
