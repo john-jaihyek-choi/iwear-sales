@@ -18,13 +18,13 @@ export default class App extends React.Component {
       },
       cart: []
     };
-    this.setView = this.setView.bind(this);
+    this.toggleView = this.toggleView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.calculateCartTotal = this.calculateCartTotal.bind(this);
   }
 
-  setView(name, params) {
+  toggleView(name, params) {
     this.setState({
       view: {
         name: name,
@@ -100,7 +100,7 @@ export default class App extends React.Component {
 
     return (
       <>
-        <Header />
+        <Header toggleView={this.toggleView}/>
         {content}
         <Footer />
       </>

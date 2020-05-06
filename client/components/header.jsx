@@ -6,17 +6,12 @@ export default class Header extends React.Component {
     this.state = {
       navStatus: false
     };
+    this.navigate = this.navigate.bind(this);
     this.toggleNav = this.toggleNav.bind(this);
-    this.viewCart = this.viewCart.bind(this);
-    this.toMain = this.toMain.bind(this);
   }
 
-  viewCart(event) {
-    this.props.setView('cart', {});
-  }
+  navigate(event) {
 
-  toMain(event) {
-    this.props.setView('catalog', {});
   }
 
   toggleNav(event) {
@@ -61,10 +56,10 @@ export default class Header extends React.Component {
               <div className={`collapse navbar-collapse ${this.state.navStatus ? 'show' : ''}`} id="header-nav">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item nav-link active">Home</li>
-                  <li className="nav-item nav-link">Shop</li>
-                  <li className="nav-item nav-link">About</li>
-                  <li className="nav-item nav-link">Contact</li>
-                  <li className="nav-item nav-link"><i className='bx bxs-cart bx-xs'></i>[0]</li>
+                  <li className="nav-item nav-link" onClick={this.navigate} id='shop'>Shop</li>
+                  <li className="nav-item nav-link" onClick={this.navigate} id='about'>About</li>
+                  <li className="nav-item nav-link" onClick={this.navigate} id='contact'>Contact</li>
+                  <li className="nav-item nav-link" onClick={this.navigate} id='cart'><i className='bx bxs-cart bx-xs'></i>[0]</li>
                 </ul>
               </div>
             </div>
