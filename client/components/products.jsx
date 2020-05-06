@@ -7,8 +7,8 @@ export default class Products extends React.Component {
       <>
         <li className='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
           <div className="productInfo text-center">
-            <div className="productImage d-flex">
-              <img src="assets/images/glasses/ariel/ariel_b_1.png" alt=""/>
+            <div className="productImage position-relative">
+              <img src="assets/images/glasses/palma/palma_g_1.png" alt=""/>
             </div>
             <div className="productDetails">
               <span>product name1</span><br/>
@@ -20,7 +20,7 @@ export default class Products extends React.Component {
         </li>
         <li className='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
           <div className="productInfo text-center">
-            <div className="productImage d-flex">
+            <div className="productImage position-relative">
               <img src="assets/images/glasses/elliot/elliot_g_1.png" alt=""/>
             </div>
             <div className="productDetails">
@@ -33,8 +33,8 @@ export default class Products extends React.Component {
         </li>
         <li className='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
           <div className="productInfo text-center">
-            <div className="productImage d-flex">
-              <img src="assets/images/glasses/nevada/nevada_g_1.png" alt=""/>
+            <div className="productImage position-relative">
+              <img src="assets/images/glasses/morrell/morrell_g_1.png" alt=""/>
             </div>
             <div className="productDetails">
               <span>product name3</span><br/>

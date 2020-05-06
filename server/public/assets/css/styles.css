@@ -129,6 +129,11 @@ footer {
     color: white;
 }
 
+.productImage img {
+    object-fit: contain;
+    width: 100%;
+}
+
 @media (max-width: 991.98px) {
     .navbar {
         background: #000000 !important;
