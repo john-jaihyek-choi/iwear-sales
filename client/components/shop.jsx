@@ -1,5 +1,5 @@
-import React from 'react';
-import Products from './products';
+import React, { lazy, Suspense } from 'react';
+const Products = lazy(() => import('./products'));
 
 export default class shop extends React.Component {
   constructor(props) {
@@ -13,7 +13,9 @@ export default class shop extends React.Component {
     return (
       <div className="container">
         <ul className='list-unstyled d-flex flex-wrap'>
-          <Products />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Products />
+          </Suspense>
         </ul>
       </div>
     );
