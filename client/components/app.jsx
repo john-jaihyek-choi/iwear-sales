@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import Home from './home';
+import Shop from './shop';
 
 // import ProductList from './productList';
 // import ProductDetails from './product-details';
@@ -97,6 +98,7 @@ export default class App extends React.Component {
   render() {
     let content = null;
     if (this.state.view.name === 'home') content = <Home />;
+    if (this.state.view.name === 'shop') content = <Shop />;
 
     return (
       <>

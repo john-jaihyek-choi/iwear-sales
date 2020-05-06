@@ -10,14 +10,18 @@ export default class Header extends React.Component {
     this.toggleNav = this.toggleNav.bind(this);
   }
 
-  navigate(event) {
-
-  }
-
   toggleNav(event) {
     this.setState({
       navStatus: !this.state.navStatus
     });
+  }
+
+  navigate(event) {
+    if (event.target.getAttribute('id') === 'home') return this.props.toggleView('home');
+    if (event.target.getAttribute('id') === 'shop') return this.props.toggleView('shop');
+    if (event.target.getAttribute('id') === 'about') return this.props.toggleView('about');
+    if (event.target.getAttribute('id') === 'contact') return this.props.toggleView('contact');
+    if (event.target.getAttribute('id') === 'cart') return this.props.toggleView('cart');
   }
 
   render() {
@@ -55,7 +59,7 @@ export default class Header extends React.Component {
 
               <div className={`collapse navbar-collapse ${this.state.navStatus ? 'show' : ''}`} id="header-nav">
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item nav-link active">Home</li>
+                  <li className="nav-item nav-link active" onClick={this.navigate} id='home'>Home</li>
                   <li className="nav-item nav-link" onClick={this.navigate} id='shop'>Shop</li>
                   <li className="nav-item nav-link" onClick={this.navigate} id='about'>About</li>
                   <li className="nav-item nav-link" onClick={this.navigate} id='contact'>Contact</li>
