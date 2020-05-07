@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 const Products = lazy(() => import('./products'));
 
-export default class shop extends React.Component {
+export default class Shop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,12 +9,26 @@ export default class shop extends React.Component {
     };
   }
 
+  getProducts() {
+    fetch('/api/products')
+      .then(promise => promise.json())
+      .then(products => {
+        this.setState({
+          products: products
+        });
+      });
+  }
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
   render() {
     return (
       <div className="container">
         <ul className='list-unstyled d-flex flex-wrap'>
           <Suspense fallback={<div>Loading...</div>}>
-            <Products />
+            <Products products={this.state.products}/>
           </Suspense>
         </ul>
       </div>

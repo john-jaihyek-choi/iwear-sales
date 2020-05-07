@@ -46,7 +46,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 .nav-item:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .navbar-toggler {
@@ -129,9 +129,31 @@ footer {
     color: white;
 }
 
+.productInfo .productImage {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+img.front {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+img.side {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
 .productImage img {
     object-fit: contain;
     width: 100%;
+}
+
+.hidden {
+    display: none;
 }
 
 @media (max-width: 991.98px) {

@@ -15,8 +15,10 @@ app.use(express.json());
 
 app.get('/api/products', (req, res, next) => {
   const products = `
-    select *
-    from "products"
+    select "name",
+      "price",
+      "availColors"
+    from "styles"
   `;
 
   db.query(products)

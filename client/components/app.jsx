@@ -99,14 +99,14 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <BrowserRouter>
+      <>
         <Header toggleView={this.toggleView}/>
-
-        <Route exact path='/' component={Home} />
-        <Route path='/shop' component={Shop} />
-
+        <BrowserRouter>
+          <Route exact path='/' component={Home} />
+          <Route path='/shop' component={Shop} />
+        </BrowserRouter>
         <Footer />
-      </BrowserRouter>
+      </>
     );
   }
 }
