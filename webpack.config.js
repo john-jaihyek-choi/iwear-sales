@@ -10,7 +10,8 @@ module.exports = {
   },
   entry: clientPath,
   output: {
-    path: publicPath
+    path: publicPath,
+    filename: '[name].js'
   },
   module: {
     rules: [
