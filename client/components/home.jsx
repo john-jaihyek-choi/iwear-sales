@@ -13,8 +13,8 @@ export default class Home extends React.Component {
               <h5>OPTICAL GLASSES</h5>
               <h3 className='font-weight-bold'>Explore our selection of fashion opitcal glasses to find the perfect frame that suits you!</h3>
               <div className='d-flex pt-4 text-center'>
-                <button className='col btn mr-2'>SHOP MEN</button>
-                <button className='col btn'>SHOP WOMEN</button>
+                {/* <button className='col btn mr-2'>SHOP MEN</button>
+                <button className='col btn'>SHOP WOMEN</button> */}
               </div>
             </div>
           </div>
@@ -25,8 +25,8 @@ export default class Home extends React.Component {
               <h5>SUNGLASSES</h5>
               <h3 className='font-weight-bold'>Protect your eyes from the sun with our latest sunglass collection!</h3>
               <div className='d-flex pt-4 text-center'>
-                <button className='col btn mr-2'>SHOP MEN</button>
-                <button className='col btn'>SHOP WOMEN</button>
+                {/* <button className='col btn mr-2'>SHOP MEN</button>
+                <button className='col btn'>SHOP WOMEN</button> */}
               </div>
             </div>
           </div>
