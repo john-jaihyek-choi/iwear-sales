@@ -8,7 +8,7 @@ export default class Footer extends React.Component {
         <div className="container">
           <div className="row mb-5">
             <div className="col-md">
-              <div className="mb-4">
+              <div className="mb-4 ml-md-5 pl-md-5">
                 <h2 className="footer-heading">iWear</h2>
                 <p>iWear E-Commerece Website</p>
                 <ul className="list-unstyled mt-5 d-flex flex-wrap">
@@ -19,7 +19,7 @@ export default class Footer extends React.Component {
               </div>
             </div>
             <div className="col-md">
-              <div className="mb-4 ml-md-5">
+              <div className="mb-4 ml-md-5 pl-md-5">
                 <h2 className="footer-heading">Menu</h2>
                 <ul className="list-unstyled">
                   <li className="footer-content">Shop</li>
@@ -29,7 +29,7 @@ export default class Footer extends React.Component {
               </div>
             </div>
             <div className="col-md">
-              <div className="mb-4">
+              <div className="mb-4 ml-md-5 pl-md-5">
                 <h2 className="footer-heading">Have a Questions?</h2>
                 <div className="block-23 mb-3">
                   <ul className="list-unstyled">
