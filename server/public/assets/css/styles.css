@@ -45,6 +45,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     opacity: 1 !important;
 }
 
+.nav-item:hover {
+    transform: scale(1.1);
+}
+
 .navbar-toggler {
     border: none;
     color: white;
@@ -125,6 +129,37 @@ footer {
     color: white;
 }
 
+.productInfo .productImage {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+img.front {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+img.side {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.productImage img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.productImage img.front:hover {
+    opacity: 0;
+}
+
+.hidden {
+    opacity: 0;
+}
+
 @media (max-width: 991.98px) {
     .navbar {
         background: #000000 !important;
@@ -151,5 +186,3 @@ footer {
         text-align: right;
     }
 }
-
-

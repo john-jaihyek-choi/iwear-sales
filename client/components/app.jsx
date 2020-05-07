@@ -2,6 +2,8 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import Home from './home';
+import Shop from './shop';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 // import ProductList from './productList';
 // import ProductDetails from './product-details';
@@ -13,18 +15,18 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'home',
+        name: 'shop',
         params: {}
       },
       cart: []
     };
-    this.setView = this.setView.bind(this);
+    this.toggleView = this.toggleView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.calculateCartTotal = this.calculateCartTotal.bind(this);
   }
 
-  setView(name, params) {
+  toggleView(name, params) {
     this.setState({
       view: {
         name: name,
@@ -95,13 +97,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    let content = null;
-    if (this.state.view.name === 'home') content = <Home />;
 
     return (
       <>
-        <Header />
-        {content}
+        <Header toggleView={this.toggleView}/>
+        <BrowserRouter>
+          <Route exact path='/' component={Home} />
+          <Route path='/shop' component={Shop} />
+        </BrowserRouter>
         <Footer />
       </>
     );
