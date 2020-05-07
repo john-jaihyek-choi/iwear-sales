@@ -51,7 +51,7 @@ export default class Header extends React.Component {
           </div>
           <nav className="navbar navbar-expand-lg bg-white">
             <div className="container">
-              <a className="navbar-brand" href="index.html">iWear</a>
+              <a href='/' className="navbar-brand text-dark text-decoration-none">iWear</a>
               <button className="navbar-toggler" onClick={this.toggleNav} type="button" data-toggle="collapse" data-target="header-nav" aria-controls="header-nav" aria-expanded="true" aria-label="Toggle navigation">
                 <i className='bx bx-menu bx-sm align-middle' ></i>
                 <span className="align-middle">Menu</span>
@@ -59,11 +59,11 @@ export default class Header extends React.Component {
 
               <div className={`collapse navbar-collapse ${this.state.navStatus ? 'show' : ''}`} id="header-nav">
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item nav-link active" onClick={this.navigate} id='home'>Home</li>
-                  <li className="nav-item nav-link" onClick={this.navigate} id='shop'>Shop</li>
-                  <li className="nav-item nav-link" onClick={this.navigate} id='about'>About</li>
-                  <li className="nav-item nav-link" onClick={this.navigate} id='contact'>Contact</li>
-                  <li className="nav-item nav-link" onClick={this.navigate} id='cart'><i className='bx bxs-cart bx-xs'></i>[0]</li>
+                  <li className="nav-item nav-link active" onClick={this.navigate} id='home'><a href='/' className='text-dark text-decoration-none'>Home</a></li>
+                  <li className="nav-item nav-link" onClick={this.navigate} id='shop'><a href='/shop' className='text-dark text-decoration-none'>Shop</a></li>
+                  <li className="nav-item nav-link" onClick={this.navigate} id='about'><a href='/about' className='text-dark text-decoration-none'>About</a></li>
+                  <li className="nav-item nav-link" onClick={this.navigate} id='contact'><a href='/contact' className='text-dark text-decoration-none'>Contact</a></li>
+                  <li className="nav-item nav-link" onClick={this.navigate} id='cart'><a href='/cart' className='text-dark text-decoration-none'><i className='bx bxs-cart bx-xs'></i>[0]</a></li>
                 </ul>
               </div>
             </div>

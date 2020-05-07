@@ -3,6 +3,7 @@ import Header from './header';
 import Footer from './footer';
 import Home from './home';
 import Shop from './shop';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 // import ProductList from './productList';
 // import ProductDetails from './product-details';
@@ -96,16 +97,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    let content = null;
-    if (this.state.view.name === 'home') content = <Home />;
-    if (this.state.view.name === 'shop') content = <Shop />;
 
     return (
-      <>
+      <BrowserRouter>
         <Header toggleView={this.toggleView}/>
-        {content}
+        <Route exact path='/' component={Home} />
+        <Route path='/shop' component={Shop} />
         <Footer />
-      </>
+      </BrowserRouter>
     );
   }
 }
