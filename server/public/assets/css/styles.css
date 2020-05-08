@@ -32,6 +32,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     color: black;
 }
 
+.navbar-brand:hover {
+    color: black;
+}
+
 .navbar .navbar-nav > .nav-item {
     font-size: 10px;
     padding-top: 1.5rem;
@@ -45,8 +49,13 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     opacity: 1 !important;
 }
 
+.navbar .nav-item a {
+    color: black;
+}
+
 .nav-item:hover {
     transform: scale(1.1);
+    color: black;
 }
 
 .navbar-toggler {
@@ -185,13 +194,13 @@ img.side {
     transition: .3s ease-in;
 }
 
-.productImage img, .productPrice, .productName {
+.productImage img, .productName {
     cursor: pointer;
 }
 
 .productInfo .addToCart {
     position: absolute;
-    width: 35%;
+    width: 40%;
     opacity: 0;
     transform: translateY(50px);
     transition: all .3s ease-in-out;
@@ -207,13 +216,24 @@ img.side {
     opacity: 0;
 }
 
+@media only screen and (max-device-width: 1366px) {
+    .productInfo .addToCart {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 @media (max-width: 991.98px) {
     .navbar {
         background: #000000 !important;
     }
-    .navbar-brand,
-    .navbar .navbar-nav > .nav-item,
-    .navbar-toggler {
+    .navbar .nav-item a, .navbar-brand {
+        color: white;
+    }
+    .nav-item:hover {
+        transform: none;
+    }
+    .navbar-brand:hover {
         color: white;
     }
     .carouselContent {
