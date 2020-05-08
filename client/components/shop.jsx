@@ -5,7 +5,8 @@ export default class Shop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [],
+      swatches: []
     };
   }
 
@@ -19,7 +20,18 @@ export default class Shop extends React.Component {
       });
   }
 
+  getSwatches() {
+    fetch('/api/swatches')
+      .then(promise => promise.json())
+      .then(swatches => {
+        this.setState({
+          swatches: swatches
+        });
+      });
+  }
+
   componentDidMount() {
+    this.getSwatches();
     this.getProducts();
   }
 
@@ -28,7 +40,7 @@ export default class Shop extends React.Component {
       <div className="container">
         <ul className='list-unstyled d-flex flex-wrap'>
           <Suspense fallback={<div>Loading...</div>}>
-            <Products products={this.state.products}/>
+            <Products products={this.state.products} swatches={this.state.swatches}/>
           </Suspense>
         </ul>
       </div>

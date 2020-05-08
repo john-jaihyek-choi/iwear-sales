@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 export default class Products extends React.Component {
 
@@ -16,15 +17,21 @@ export default class Products extends React.Component {
             <img src={image2} className='side' alt={image2} />
             <img src={image1} className='front' alt={image1} />
           </div>
-          <div className="productDetails">
-            <span>{name}</span><br/>
-            <span>{price}</span><br/>
-            <span>
-              {availColors.map(color =>
-                color + ', '
-              )}
-            </span><br/>
-            <button>Add To Cart</button>
+          <div className="productDetails text-dark">
+            <div className='productName mb-2'>{name.toUpperCase()}</div>
+            <div className='productPrice mb-2'>${(price / 100).toFixed(2)}</div>
+            <div className='productSwatches mb-4'>
+              {availColors.map(color => {
+                const swatchName = this.props.swatches[color].colorName;
+                return <>
+                  <img key={`swatch_${color}`} src={`assets/images/swatches/${color}.png`} alt={`assets/images/swatches/${color}.png`} data-tip data-for={swatchName}/>
+                  <ReactTooltip id={swatchName}><span className='swatchColor'>{swatchName}</span></ReactTooltip>
+                </>;
+              })}
+            </div>
+          </div>
+          <div className='d-flex justify-content-center'>
+            <button className='addToCart btn btn-dark'>Add To Cart</button>
           </div>
         </div>
       </li>;

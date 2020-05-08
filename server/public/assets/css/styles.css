@@ -32,6 +32,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     color: black;
 }
 
+.navbar-brand:hover {
+    color: black;
+}
+
 .navbar .navbar-nav > .nav-item {
     font-size: 10px;
     padding-top: 1.5rem;
@@ -45,8 +49,13 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     opacity: 1 !important;
 }
 
+.navbar .nav-item a {
+    color: black;
+}
+
 .nav-item:hover {
     transform: scale(1.1);
+    color: black;
 }
 
 .navbar-toggler {
@@ -129,6 +138,10 @@ footer {
     color: white;
 }
 
+.productInfo {
+    padding-bottom: 25px;
+}
+
 .productInfo .productImage {
     position: relative;
     top: 0;
@@ -145,28 +158,88 @@ img.side {
     position: absolute;
     top: 0px;
     left: 0px;
+
 }
 
 .productImage img {
     object-fit: contain;
     width: 100%;
+    transition: .3s ease-in-out;
 }
 
 .productImage img.front:hover {
     opacity: 0;
 }
 
+.productName {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.productPrice {
+    font-size: 1.1rem;
+}
+
+.productSwatches img{
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+}
+
+.productSwatches img:hover {
+    border: 1px solid #37455e;
+    border-radius: 50px;
+    padding: 2px;
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.productSwatches .swatchColor {
+    text-transform: capitalize;
+}
+
+.productImage img, .productName {
+    cursor: pointer;
+}
+
+.productInfo .addToCart {
+    position: absolute;
+    width: 40%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all .3s ease-in-out;
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.productInfo:hover .addToCart {
+    opacity: 1;
+    transform: translateY(0px);
+    z-index: 0;
+}
+
 .hidden {
     opacity: 0;
+}
+
+@media only screen and (max-device-width: 1366px) {
+    .productInfo .addToCart {
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 
 @media (max-width: 991.98px) {
     .navbar {
         background: #000000 !important;
     }
-    .navbar-brand,
-    .navbar .navbar-nav > .nav-item,
-    .navbar-toggler {
+    .navbar .nav-item a, .navbar-brand {
+        color: white;
+    }
+    .nav-item:hover {
+        transform: none;
+    }
+    .navbar-brand:hover {
         color: white;
     }
     .carouselContent {

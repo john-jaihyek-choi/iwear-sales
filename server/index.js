@@ -19,11 +19,34 @@ app.get('/api/products', (req, res, next) => {
       "price",
       "availColors"
     from "styles"
+    order by "glassesTypeId", "name"
   `;
 
   db.query(products)
     .then(result => {
       res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/swatches', (req, res, next) => {
+  const swatches = `
+    select *
+    from "frameColor"
+  `;
+
+  db.query(swatches)
+    .then(result => {
+      const swatches = {};
+      for (let i = 0; i < result.rows.length; i++) {
+        const color = result.rows[i];
+        swatches[color.colorAbbr] = {
+          colorCategoryId: color.colorCategoryId,
+          colorName: color.colorName,
+          frameColorId: color.frameColorId
+        };
+      }
+      res.json(swatches);
     })
     .catch(err => next(err));
 });
