@@ -16,15 +16,15 @@ export default class Products extends React.Component {
             <img src={image2} className='side' alt={image2} />
             <img src={image1} className='front' alt={image1} />
           </div>
-          <div className="productDetails">
-            <span>{name}</span><br/>
-            <span>{price}</span><br/>
-            <span>
+          <div className="productDetails text-dark">
+            <div className='productName mb-2'>{name.toUpperCase()}</div>
+            <div className='productPrice mb-2'>${(price / 100).toFixed(2)}</div>
+            <div className='productColors mb-2'>
               {availColors.map(color =>
                 color + ', '
               )}
-            </span><br/>
-            <button>Add To Cart</button>
+            </div>
+            {/* <button>Add To Cart</button> */}
           </div>
         </div>
       </li>;
