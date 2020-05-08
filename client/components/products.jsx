@@ -25,8 +25,8 @@ export default class Products extends React.Component {
               )}
             </div>
           </div>
-          <div>
-            <button className='addToCart btn btn-success'>Add To Cart</button>
+          <div className='d-flex justify-content-center'>
+            <button className='addToCart btn btn-dark'>Add To Cart</button>
           </div>
         </div>
       </li>;

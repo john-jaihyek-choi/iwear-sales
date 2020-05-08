@@ -191,12 +191,11 @@ img.side {
 
 .productInfo .addToCart {
     position: absolute;
-    width: 50%;
-    left: 25%;
+    width: 35%;
     opacity: 0;
     transform: translateY(50px);
     transition: all .3s ease-in-out;
-    border-radius: 50px;
+    border-radius: 15px;
 }
 
 .productInfo:hover .addToCart {
