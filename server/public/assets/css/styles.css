@@ -167,6 +167,11 @@ img.side {
     font-size: 1.1rem;
 }
 
+.productSwatches img{
+    height: 25px;
+    width: 25px;
+}
+
 .hidden {
     opacity: 0;
 }

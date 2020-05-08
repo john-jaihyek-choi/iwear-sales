@@ -19,9 +19,9 @@ export default class Products extends React.Component {
           <div className="productDetails text-dark">
             <div className='productName mb-2'>{name.toUpperCase()}</div>
             <div className='productPrice mb-2'>${(price / 100).toFixed(2)}</div>
-            <div className='productColors mb-2'>
+            <div className='productSwatches mb-2'>
               {availColors.map(color =>
-                color + ', '
+                <img key={`swatch_${color}`} src={`assets/images/swatches/${color}.png`} alt={`assets/images/swatches/${color}.png`}/>
               )}
             </div>
             {/* <button>Add To Cart</button> */}

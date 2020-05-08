@@ -5,7 +5,8 @@ export default class Shop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [],
+      swatches: []
     };
   }
 
@@ -19,8 +20,19 @@ export default class Shop extends React.Component {
       });
   }
 
+  getSwatches() {
+    fetch('/api/swatches')
+      .then(promise => promise.json())
+      .then(swatches => {
+        this.setState({
+          swatches: swatches
+        });
+      });
+  }
+
   componentDidMount() {
     this.getProducts();
+    this.getSwatches();
   }
 
   render() {

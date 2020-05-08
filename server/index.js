@@ -28,6 +28,19 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/swatches', (req, res, next) => {
+  const swatches = `
+    select *
+    from "frameColor"
+  `;
+
+  db.query(swatches)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/products/:productId', (req, res, next) => {
   const products = `
     select *
