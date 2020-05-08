@@ -209,11 +209,13 @@ img.side {
     transform: translateY(50px);
     transition: all .3s ease-in-out;
     border-radius: 15px;
+    z-index: -1;
 }
 
 .productInfo:hover .addToCart {
     opacity: 1;
     transform: translateY(0px);
+    z-index: 0;
 }
 
 .hidden {
