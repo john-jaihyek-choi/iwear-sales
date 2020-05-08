@@ -19,6 +19,7 @@ app.get('/api/products', (req, res, next) => {
       "price",
       "availColors"
     from "styles"
+    order by "glassesTypeId", "name"
   `;
 
   db.query(products)
