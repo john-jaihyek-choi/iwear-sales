@@ -194,6 +194,10 @@ img.side {
     transition: .3s ease-in;
 }
 
+.productSwatches .swatchColor {
+    text-transform: capitalize;
+}
+
 .productImage img, .productName {
     cursor: pointer;
 }

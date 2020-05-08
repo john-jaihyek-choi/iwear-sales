@@ -37,7 +37,16 @@ app.get('/api/swatches', (req, res, next) => {
 
   db.query(swatches)
     .then(result => {
-      res.json(result.rows);
+      const swatches = {};
+      for (let i = 0; i < result.rows.length; i++) {
+        const color = result.rows[i];
+        swatches[color.colorAbbr] = {
+          colorCategoryId: color.colorCategoryId,
+          colorName: color.colorName,
+          frameColorId: color.frameColorId
+        };
+      }
+      res.json(swatches);
     })
     .catch(err => next(err));
 });

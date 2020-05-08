@@ -31,8 +31,8 @@ export default class Shop extends React.Component {
   }
 
   componentDidMount() {
-    this.getProducts();
     this.getSwatches();
+    this.getProducts();
   }
 
   render() {
@@ -40,7 +40,7 @@ export default class Shop extends React.Component {
       <div className="container">
         <ul className='list-unstyled d-flex flex-wrap'>
           <Suspense fallback={<div>Loading...</div>}>
-            <Products products={this.state.products}/>
+            <Products products={this.state.products} swatches={this.state.swatches}/>
           </Suspense>
         </ul>
       </div>
