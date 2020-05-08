@@ -206,7 +206,7 @@ img.side {
     position: absolute;
     width: 40%;
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(25px);
     transition: all .3s ease-in-out;
     border-radius: 15px;
     z-index: -1;
