@@ -1,31 +1,23 @@
 import React, { Fragment } from 'react';
 import ReactTooltip from 'react-tooltip';
 
-export default class Products extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      swatchImages: []
-    };
-    this.handleClick = this.handleClick.bind(this);
-    this.toggleSwatchColor = this.toggleSwatchColor.bind(this);
-  }
+const Products = props => {
 
-  handleClick(event) {
+  const handleClick = event => {
     if (event.target.className === 'swatch') {
-      return this.toggleSwatchColor(event.target.parentNode.parentNode.previousSibling, event.target.getAttribute('data-product'), event.target.getAttribute('data-color'));
+      return toggleSwatchColor(event.target.parentNode.parentNode.previousSibling, event.target.getAttribute('data-product'), event.target.getAttribute('data-color'));
     }
-  }
+  };
 
-  toggleSwatchColor(target, product, color) {
+  const toggleSwatchColor = (target, product, color) => {
     target.querySelector('.side').setAttribute('src', `assets/images/glasses/${product}/${product}_${color}_2.png`);
     target.querySelector('.side').setAttribute('alt', `assets/images/glasses/${product}/${product}_${color}_2.png`);
     target.querySelector('.front').setAttribute('src', `assets/images/glasses/${product}/${product}_${color}_1.png`);
     target.querySelector('.front').setAttribute('alt', `assets/images/glasses/${product}/${product}_${color}_1.png`);
-  }
+  };
 
-  render() {
-    const products = this.props.products.map(product => {
+  const renderItems = () => {
+    const products = props.products.map(product => {
       const name = product.name;
       const price = product.price;
       const availColors = product.availColors;
@@ -43,9 +35,9 @@ export default class Products extends React.Component {
             <div className='productPrice mb-2'>${(price / 100).toFixed(2)}</div>
             <div className='productSwatches mb-4'>
               {availColors.map(color => {
-                const swatchName = this.props.swatches[color].colorName;
+                const swatchName = props.swatches[color].colorName;
                 return <Fragment key={`${name}_${color}`}>
-                  <img className='swatch' src={`assets/images/swatches/${color}.png`} alt={`assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} onClick={this.handleClick}/>
+                  <img className='swatch' src={`assets/images/swatches/${color}.png`} alt={`assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} onClick={handleClick}/>
                   <ReactTooltip id={swatchName}><span className='swatchColor'>{swatchName}</span></ReactTooltip>
                 </Fragment>;
               })}
@@ -60,5 +52,9 @@ export default class Products extends React.Component {
       return productInfo;
     });
     return products;
-  }
-}
+  };
+
+  return renderItems();
+};
+
+export default Products;

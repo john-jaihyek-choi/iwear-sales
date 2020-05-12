@@ -1,49 +1,40 @@
-import React, { lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 const Products = lazy(() => import('./products'));
 
-export default class Shop extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [],
-      swatches: []
-    };
-  }
+const Shop = props => {
+  const [products, setProducts] = useState([]);
+  const [swatches, setSwatches] = useState([]);
 
-  getProducts() {
+  const getProducts = () => {
     fetch('/api/products')
       .then(promise => promise.json())
       .then(products => {
-        this.setState({
-          products: products
-        });
+        setProducts(products);
       });
-  }
+  };
 
-  getSwatches() {
+  const getSwatches = () => {
     fetch('/api/swatches')
       .then(promise => promise.json())
       .then(swatches => {
-        this.setState({
-          swatches: swatches
-        });
+        setSwatches(swatches);
       });
-  }
+  };
 
-  componentDidMount() {
-    this.getSwatches();
-    this.getProducts();
-  }
+  useEffect(() => {
+    getProducts();
+    getSwatches();
+  }, []);
 
-  render() {
-    return (
-      <div className="container">
-        <ul className='list-unstyled d-flex flex-wrap'>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Products products={this.state.products} swatches={this.state.swatches}/>
-          </Suspense>
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="container">
+      <ul className='list-unstyled d-flex flex-wrap'>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Products products={products} swatches={swatches}/>
+        </Suspense>
+      </ul>
+    </div>
+  );
+};
+
+export default Shop;
