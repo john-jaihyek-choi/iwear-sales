@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 export default class Products extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      swatchImages: []
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.toggleSwatchColor = this.toggleSwatchColor.bind(this);
+  }
+
+  handleClick(event) {
+    if (event.target.className === 'swatch') {
+      return this.toggleSwatchColor(event.target.parentNode.parentNode.previousSibling, event.target.getAttribute('data-product'), event.target.getAttribute('data-color'));
+    }
+  }
+
+  toggleSwatchColor(target, product, color) {
+    target.querySelector('.side').setAttribute('src', `assets/images/glasses/${product}/${product}_${color}_2.png`);
+    target.querySelector('.side').setAttribute('alt', `assets/images/glasses/${product}/${product}_${color}_2.png`);
+    target.querySelector('.front').setAttribute('src', `assets/images/glasses/${product}/${product}_${color}_1.png`);
+    target.querySelector('.front').setAttribute('alt', `assets/images/glasses/${product}/${product}_${color}_1.png`);
+  }
 
   render() {
-    const test = this.props.products.map(product => {
+    const products = this.props.products.map(product => {
       const name = product.name;
       const price = product.price;
       const availColors = product.availColors;
@@ -23,10 +44,10 @@ export default class Products extends React.Component {
             <div className='productSwatches mb-4'>
               {availColors.map(color => {
                 const swatchName = this.props.swatches[color].colorName;
-                return <>
-                  <img key={`swatch_${color}`} src={`assets/images/swatches/${color}.png`} alt={`assets/images/swatches/${color}.png`} data-tip data-for={swatchName}/>
+                return <Fragment key={`${name}_${color}`}>
+                  <img className='swatch' src={`assets/images/swatches/${color}.png`} alt={`assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} onClick={this.handleClick}/>
                   <ReactTooltip id={swatchName}><span className='swatchColor'>{swatchName}</span></ReactTooltip>
-                </>;
+                </Fragment>;
               })}
             </div>
           </div>
@@ -38,6 +59,6 @@ export default class Products extends React.Component {
 
       return productInfo;
     });
-    return test;
+    return products;
   }
 }
