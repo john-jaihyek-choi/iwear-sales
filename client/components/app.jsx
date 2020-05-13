@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './header';
 import Footer from './footer';
 import Home from './home';
@@ -10,103 +10,85 @@ import { BrowserRouter, Route } from 'react-router-dom';
 // import CartSummary from './cartSummary';
 // import CheckoutForm from './checkoutForm';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      view: {
-        name: 'shop',
-        params: {}
-      },
-      cart: []
-    };
-    this.toggleView = this.toggleView.bind(this);
-    this.addToCart = this.addToCart.bind(this);
-    this.placeOrder = this.placeOrder.bind(this);
-    this.calculateCartTotal = this.calculateCartTotal.bind(this);
-  }
+const App = props => {
+  const [setView] = useState({ name: 'shop', params: {} });
+  // const [cart, setCart] = useState([]);
 
-  toggleView(name, params) {
-    this.setState({
-      view: {
-        name: name,
-        params: params
-      }
-    });
-  }
+  const toggleView = (name, params) => {
+    setView({ name: name, params: params });
+  };
 
-  getCartItems() {
-    fetch('/api/carts')
-      .then(response => response.json())
-      .then(cartItems => {
-        this.setState({
-          cart: cartItems
-        });
-      });
-  }
+  return (
+    <>
+      <Header toggleView={toggleView}/>
+      <BrowserRouter>
+        <Route exact path='/' component={Home} />
+        <Route path='/shop' component={Shop} />
+      </BrowserRouter>
+      <Footer />
+    </>
+  );
+};
 
-  addToCart(product) {
-    fetch('/api/carts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        productId: product.productId
-      })
-    })
-      .then(response => response.json())
-      .then(addedProduct => {
-        const newCart = this.state.cart.concat(addedProduct);
-        this.setState({
-          cart: newCart
-        });
-      });
-  }
+// getCartItems() {
+//   fetch('/api/carts')
+//     .then(response => response.json())
+//     .then(cartItems => {
+//       this.setState({
+//         cart: cartItems
+//       });
+//     });
+// }
 
-  calculateCartTotal() {
-    let totalPrice = 0;
-    this.state.cart.forEach(product => {
-      totalPrice = totalPrice + product.price;
-    });
-    return (totalPrice / 100).toFixed(2);
-  }
+// addToCart(product) {
+//   fetch('/api/carts', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify({
+//       productId: product.productId
+//     })
+//   })
+//     .then(response => response.json())
+//     .then(addedProduct => {
+//       const newCart = this.state.cart.concat(addedProduct);
+//       this.setState({
+//         cart: newCart
+//       });
+//     });
+// }
 
-  placeOrder(buyerInfo) {
-    fetch('/api/orders', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: buyerInfo.name,
-        creditCard: buyerInfo.creditCard,
-        shippingAddress: buyerInfo.shippingAddress
-      })
-    })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          view: {
-            name: 'catalog',
-            params: {}
-          },
-          cart: []
-        });
-      });
-  }
+// calculateCartTotal() {
+//   let totalPrice = 0;
+//   this.state.cart.forEach(product => {
+//     totalPrice = totalPrice + product.price;
+//   });
+//   return (totalPrice / 100).toFixed(2);
+// }
 
-  componentDidMount() {
-    this.getCartItems();
-  }
+// placeOrder(buyerInfo) {
+//   fetch('/api/orders', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify({
+//       name: buyerInfo.name,
+//       creditCard: buyerInfo.creditCard,
+//       shippingAddress: buyerInfo.shippingAddress
+//     })
+//   })
+//     .then(response => response.json())
+//     .then(data => {
+//       this.setState({
+//         view: {
+//           name: 'catalog',
+//           params: {}
+//         },
+//         cart: []
+//       });
+//     });
+// }
 
-  render() {
+// componentDidMount() {
+//   this.getCartItems();
+// }
 
-    return (
-      <>
-        <Header toggleView={this.toggleView}/>
-        <BrowserRouter>
-          <Route exact path='/' component={Home} />
-          <Route path='/shop' component={Shop} />
-        </BrowserRouter>
-        <Footer />
-      </>
-    );
-  }
-}
+export default App;

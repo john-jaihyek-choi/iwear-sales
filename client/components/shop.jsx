@@ -1,49 +1,44 @@
-import React, { lazy, Suspense } from 'react';
-const Products = lazy(() => import('./products'));
+import React, { useState, useEffect } from 'react';
+import Products from './products';
 
-export default class Shop extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [],
-      swatches: []
-    };
-  }
+const Shop = props => {
+  const [products, setProducts] = useState([]);
+  const [swatches, setSwatches] = useState([]);
+  const [productFetchStatus, setProductFetchStatus] = useState(false);
+  const [swatchFetchStatus, setSwatchFetchStatus] = useState(false);
 
-  getProducts() {
+  const getProducts = () => {
     fetch('/api/products')
       .then(promise => promise.json())
       .then(products => {
-        this.setState({
-          products: products
-        });
+        setProducts(products);
+        setProductFetchStatus(true);
       });
-  }
+  };
 
-  getSwatches() {
+  const getSwatches = () => {
     fetch('/api/swatches')
       .then(promise => promise.json())
       .then(swatches => {
-        this.setState({
-          swatches: swatches
-        });
+        setSwatches(swatches);
+        setSwatchFetchStatus(true);
       });
-  }
+  };
 
-  componentDidMount() {
-    this.getSwatches();
-    this.getProducts();
-  }
+  useEffect(() => {
+    if (!productFetchStatus && !swatchFetchStatus) {
+      getProducts();
+      getSwatches();
+    }
+  }, []);
 
-  render() {
-    return (
-      <div className="container">
-        <ul className='list-unstyled d-flex flex-wrap'>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Products products={this.state.products} swatches={this.state.swatches}/>
-          </Suspense>
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="container">
+      <ul className='list-unstyled d-flex flex-wrap'>
+        {(productFetchStatus && swatchFetchStatus) ? <Products products={products} swatches={swatches}/> : <div>Loading...</div>}
+      </ul>
+    </div>
+  );
+};
+
+export default Shop;
