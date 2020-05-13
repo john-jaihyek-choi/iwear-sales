@@ -87,8 +87,4 @@ const App = props => {
 //     });
 // }
 
-// componentDidMount() {
-//   this.getCartItems();
-// }
-
 export default App;
