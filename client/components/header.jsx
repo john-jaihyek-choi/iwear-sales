@@ -39,7 +39,7 @@ const Header = props => {
         <nav className="navbar navbar-expand-lg bg-white">
           <div className="container">
             <a href='/' className="navbar-brand text-decoration-none">iWear</a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="header-nav" aria-controls="header-nav" aria-expanded="true" aria-label="Toggle navigation">
+            <button className="navbar-toggler" type="button" onClick={navigate} data-toggle="collapse" data-target="header-nav" aria-controls="header-nav" aria-expanded="true" aria-label="Toggle navigation">
               <i className='bx bx-menu bx-sm align-middle' ></i>
               <span className="align-middle">Menu</span>
             </button>
