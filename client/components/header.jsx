@@ -5,11 +5,7 @@ const Header = props => {
 
   const navigate = event => {
     setNavStatus(!navStatus);
-    if (event.target.getAttribute('id') === 'home') return props.toggleView('home');
-    if (event.target.getAttribute('id') === 'shop') return props.toggleView('shop');
-    if (event.target.getAttribute('id') === 'about') return props.toggleView('about');
-    if (event.target.getAttribute('id') === 'contact') return props.toggleView('contact');
-    if (event.target.getAttribute('id') === 'cart') return props.toggleView('cart');
+    props.toggleView(event.target.getAttribute('id'));
   };
 
   return (
@@ -46,11 +42,11 @@ const Header = props => {
 
             <div className={`collapse navbar-collapse ${navStatus ? 'show' : ''}`} id="header-nav">
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item nav-link active" onClick={navigate} id='home'><a href='/' className='text-decoration-none'>Home</a></li>
-                <li className="nav-item nav-link" onClick={navigate} id='shop'><a href='/shop' className='text-decoration-none'>Shop</a></li>
-                <li className="nav-item nav-link" onClick={navigate} id='about'><a href='/about' className='text-decoration-none'>About</a></li>
-                <li className="nav-item nav-link" onClick={navigate} id='contact'><a href='/contact' className='text-decoration-none'>Contact</a></li>
-                <li className="nav-item nav-link" onClick={navigate} id='cart'><a href='/cart' className='text-decoration-none'><i className='bx bxs-cart bx-xs'></i>[0]</a></li>
+                <li className="nav-item nav-link active"><a href='/' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='home'>Home</a></li>
+                <li className="nav-item nav-link"><a href='/shop' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='shop'>Shop</a></li>
+                <li className="nav-item nav-link"><a href='/about' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='about'>About</a></li>
+                <li className="nav-item nav-link"><a href='/contact' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='contact'>Contact</a></li>
+                <li className="nav-item nav-link"><a href='/cart' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='cart'><i className='bx bxs-cart bx-xs'></i>[0]</a></li>
               </ul>
             </div>
           </div>
