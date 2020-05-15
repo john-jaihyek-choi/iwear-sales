@@ -11,9 +11,9 @@ const Footer = () => {
               <h2 className="footer-heading">iWear</h2>
               <p>iWear E-Commerece Website</p>
               <ul className="list-unstyled mt-5 d-flex flex-wrap">
-                <li className="mx-2 text-dark"><a href="#"><i className='bx bxl-github bx-md text-dark' ></i></a></li>
-                <li className="mx-2"><a href="#"><i className='bx bxl-linkedin bx-md text-dark' ></i></a></li>
-                <li className="mx-2"><a href="#"><i className='bx bxs-window-alt bx-md text-dark' ></i></a></li>
+                <li className="mx-2 text-dark"><a href="https://github.com/john-jaihyek-choi" target='_blank' rel="noopener noreferrer"><i className='bx bxl-github bx-md text-dark' ></i></a></li>
+                <li className="mx-2"><a href="https://www.linkedin.com/in/johnjaihyekchoi/" target='_blank' rel="noopener noreferrer"><i className='bx bxl-linkedin bx-md text-dark' ></i></a></li>
+                <li className="mx-2"><a href="https://johnjhc.com/" target='_blank' rel="noopener noreferrer"><i className='bx bxs-window-alt bx-md text-dark' ></i></a></li>
               </ul>
             </div>
           </div>
@@ -32,9 +32,9 @@ const Footer = () => {
               <h2 className="footer-heading">Have a Questions?</h2>
               <div className="block-23 mb-3">
                 <ul className="list-unstyled">
-                  <li className="footer-content align-middle"><i className='bx bxs-map bx-sm align-middle'></i><span className="align-middle"> Orange County, CA</span></li>
-                  <li className="footer-content align-middle"><i className='bx bxs-phone bx-sm align-middle' ></i><span className="align-middle"> +1 123 456 7890</span></li>
-                  <li className="footer-content align-middle"><i className='bx bx-mail-send bx-sm align-middle' ></i><span className="align-middle"> email@yourdomain.com</span></li>
+                  <li className="footer-content align-middle"><i className='bx bxs-map bx-sm align-middle'></i><a className="align-middle text-dark"> Orange County, CA</a></li>
+                  <li className="footer-content align-middle"><i className='bx bxs-phone bx-sm align-middle' ></i><a className="align-middle text-decoration-none text-dark" href='tel:1-562-708-7297'> +1 (562) 708-7297</a></li>
+                  <li className="footer-content align-middle"><i className='bx bx-mail-send bx-sm align-middle' ></i><a className="align-middle text-decoration-none text-dark" href="mailto:jaihyek.choi@gmail.com" target="_blank" rel="noopener noreferrer"> jaihyek.choi@gmail.com</a></li>
                 </ul>
               </div>
             </div>
