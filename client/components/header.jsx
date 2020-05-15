@@ -18,11 +18,11 @@ const Header = props => {
                 <div className="row d-flex">
                   <div className="col-md pr-4 d-flex align-items-center justify-content-center">
                     <div className="icon mr-2 d-flex justify-content-center align-items-center"><span className="icon-phone2"></span></div>
-                    <span className="text text-white"><i className='bx bxs-phone' ></i>+ 1235 2355 98</span>
+                    <span className="text text-white"><a href='tel:1-562-708-7297' className='text-decoration-none text-white'><i className='bx bxs-phone' ></i>+1 (562) 708-7297</a></span>
                   </div>
                   <div className="col-md pr-4 d-flex align-items-center justify-content-center">
                     <div className="icon mr-2 d-flex justify-content-center align-items-center"><span className="icon-paper-plane"></span></div>
-                    <span className="text text-white"><i className='bx bx-paper-plane' ></i>youremail@email.com</span>
+                    <span className="text text-white"><a href="mailto:jaihyek.choi@gmail.com" target='_blank' rel="noopener noreferrer" className='text-decoration-none text-white'><i className='bx bx-paper-plane' ></i>jaihyek.choi@gmail.com</a></span>
                   </div>
                   <div className="col-md-5 pr-4 d-flex align-items-center text-lg-right justify-content-center">
                     <span className="text text-white"><i className='bx bxs-truck' ></i>3-5 Business days delivery &amp; Free Returns</span>
