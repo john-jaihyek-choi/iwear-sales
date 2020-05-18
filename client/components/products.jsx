@@ -5,7 +5,10 @@ const Products = props => {
 
   const handleClick = event => {
     if (event.target.className === 'swatch') {
-      return toggleSwatchColor(event.target.parentNode.parentNode.previousSibling, event.target.getAttribute('data-product'), event.target.getAttribute('data-color'));
+      const target = event.target.parentNode.parentNode.previousSibling;
+      const product = event.target.getAttribute('data-product');
+      const color = event.target.getAttribute('data-color');
+      return toggleSwatchColor(target, product, color);
     }
   };
 
