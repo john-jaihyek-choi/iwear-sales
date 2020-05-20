@@ -1,34 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import Home from './home';
 import Shop from './shop';
+import ProductDetails from './productDetails';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-// import ProductList from './productList';
-// import ProductDetails from './product-details';
-// import CartSummary from './cartSummary';
-// import CheckoutForm from './checkoutForm';
-
 const App = props => {
-  const [setView] = useState({ name: 'shop', params: {} });
   // const [cart, setCart] = useState([]);
-
-  const toggleView = (name, params) => {
-    setView({ name: name, params: params });
-  };
 
   return (
     <>
-      <Header toggleView={toggleView}/>
+      <Header/>
       <BrowserRouter>
         <Route exact path='/' component={Home} />
-        <Route path='/shop' component={Shop} />
+        <Route path='/shop' component={Shop}/>
+        <Route path='/details' component={ProductDetails} />
       </BrowserRouter>
       <Footer />
     </>
   );
 };
+
+// import ProductList from './productList';
+// import ProductDetails from './product-details';
+// import CartSummary from './cartSummary';
+// import CheckoutForm from './checkoutForm';
 
 // getCartItems() {
 //   fetch('/api/carts')

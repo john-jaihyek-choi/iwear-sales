@@ -5,7 +5,6 @@ const Header = props => {
 
   const navigate = event => {
     setNavStatus(!navStatus);
-    props.toggleView(event.target.getAttribute('id'));
   };
 
   return (
@@ -42,11 +41,11 @@ const Header = props => {
 
             <div className={`collapse navbar-collapse ${navStatus ? 'show' : ''}`} id="header-nav">
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item nav-link active"><a href='/' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='home'>Home</a></li>
-                <li className="nav-item nav-link"><a href='/shop' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='shop'>Shop</a></li>
-                <li className="nav-item nav-link"><a href='/about' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='about'>About</a></li>
-                <li className="nav-item nav-link"><a href='/contact' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='contact'>Contact</a></li>
-                <li className="nav-item nav-link"><a href='/cart' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='cart'><i className='bx bxs-cart bx-xs'></i>[0]</a></li>
+                <li className="nav-item nav-link active"><a href='/' className='text-decoration-none' onClick={navigate} id='home'>Home</a></li>
+                <li className="nav-item nav-link"><a href='/shop' className='text-decoration-none' onClick={navigate} id='shop'>Shop</a></li>
+                {/* <li className="nav-item nav-link"><a href='/about' className='text-decoration-none' onClick={navigate} id='about'>About</a></li>
+                <li className="nav-item nav-link"><a href='/contact' className='text-decoration-none' onClick={navigate} id='contact'>Contact</a></li> */}
+                <li className="nav-item nav-link"><a href='/cart' className='text-decoration-none' onClick={navigate} id='cart'><i className='bx bxs-cart bx-xs'></i>[0]</a></li>
               </ul>
             </div>
           </div>

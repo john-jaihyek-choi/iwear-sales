@@ -33,11 +33,13 @@ const Shop = props => {
   }, []);
 
   return (
-    <div className="container">
-      <ul className='list-unstyled d-flex flex-wrap'>
-        {(productFetchStatus && swatchFetchStatus) ? <Products products={products} swatches={swatches}/> : <div>Loading...</div>}
-      </ul>
-    </div>
+    <>
+      <div className="container">
+        <ul className='list-unstyled d-flex flex-wrap'>
+          {(productFetchStatus && swatchFetchStatus) ? <Products products={products} swatches={swatches}/> : <div>Loading...</div>}
+        </ul>
+      </div>
+    </>
   );
 };
 

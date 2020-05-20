@@ -161,13 +161,13 @@ img.side {
 
 }
 
-.productImage img {
+.productImage a img {
     object-fit: contain;
     width: 100%;
     transition: .3s ease-in-out;
 }
 
-.productImage img.front:hover {
+.productImage a img.front:hover {
     opacity: 0;
 }
 
