@@ -11,13 +11,13 @@ const App = props => {
 
   return (
     <>
-      <Header/>
       <BrowserRouter>
+        <Header/>
         <Route exact path='/' component={Home} />
         <Route path='/shop' component={Shop}/>
-        <Route path='/details' component={ProductDetails} />
+        <Route path='/details' component={ProductDetails}/>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </>
   );
 };

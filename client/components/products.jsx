@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import ReactTooltip from 'react-tooltip';
+import { Link } from 'react-router-dom';
 
 const Products = props => {
 
@@ -30,10 +31,10 @@ const Products = props => {
       const productInfo = <li key={name} className='col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 mt-4'>
         <div className="productInfo text-center">
           <div className="productImage">
-            <a href="/details">
+            <Link to='/details'>
               <img src={image2} className='side' alt={image2}/>
               <img src={image1} className='front' alt={image1}/>
-            </a>
+            </Link>
           </div>
           <div className="productDetails text-dark">
             <div className='productName mb-2'><a href="/details" className='text-decoration-none text-dark'>{name.toUpperCase()}</a></div>
