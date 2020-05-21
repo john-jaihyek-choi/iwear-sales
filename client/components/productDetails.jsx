@@ -4,7 +4,7 @@ const ProductDetails = props => {
   const [details, setDetails] = useState(props.location.productProps || null);
 
   const getProductDetail = () => {
-    fetch('/api/getDetails')
+    fetch(`/api/details?productName=${props.match.params.productName}`)
       .then(promise => promise.json())
       .then(details => {
         setDetails(details);
@@ -15,7 +15,7 @@ const ProductDetails = props => {
     if (!details) {
       getProductDetail();
     }
-  });
+  }, []);
 
   return (
     <div className='container'>
