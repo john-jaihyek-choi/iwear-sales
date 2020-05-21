@@ -14,10 +14,10 @@ const Products = props => {
   };
 
   const toggleSwatchColor = (target, product, color) => {
-    target.querySelector('.side').setAttribute('src', `assets/images/glasses/${product}/${product}_${color}_2.png`);
-    target.querySelector('.side').setAttribute('alt', `assets/images/glasses/${product}/${product}_${color}_2.png`);
-    target.querySelector('.front').setAttribute('src', `assets/images/glasses/${product}/${product}_${color}_1.png`);
-    target.querySelector('.front').setAttribute('alt', `assets/images/glasses/${product}/${product}_${color}_1.png`);
+    target.querySelector('.side').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
+    target.querySelector('.side').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
+    target.querySelector('.front').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
+    target.querySelector('.front').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
   };
 
   const renderItems = () => {
@@ -25,13 +25,16 @@ const Products = props => {
       const name = product.name;
       const price = product.price;
       const availColors = product.availColors;
-      const image1 = `assets/images/glasses/${name}/${name}_${availColors[0]}_1.png`;
-      const image2 = `assets/images/glasses/${name}/${name}_${availColors[0]}_2.png`;
+      const image1 = `/assets/images/glasses/${name}/${name}_${availColors[0]}_1.png`;
+      const image2 = `/assets/images/glasses/${name}/${name}_${availColors[0]}_2.png`;
 
       const productInfo = <li key={name} className='col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 mt-4'>
         <div className="productInfo text-center">
           <div className="productImage">
-            <Link to='/details'>
+            <Link to={{
+              pathname: `/shop/${name}`,
+              productProps: { product: product }
+            }}>
               <img src={image2} className='side' alt={image2}/>
               <img src={image1} className='front' alt={image1}/>
             </Link>
@@ -44,7 +47,7 @@ const Products = props => {
                 const swatchName = props.swatches[color].colorName;
                 return (
                   <Fragment key={`${name}_${color}`}>
-                    <img className='swatch' src={`assets/images/swatches/${color}.png`} alt={`assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} onClick={handleClick}/>
+                    <img className='swatch' src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} onClick={handleClick}/>
                     <ReactTooltip id={swatchName}><span className='swatchColor'>{swatchName}</span></ReactTooltip>
                   </Fragment>);
               })}

@@ -14,8 +14,8 @@ const App = props => {
       <BrowserRouter>
         <Header/>
         <Route exact path='/' component={Home} />
-        <Route path='/shop' component={Shop}/>
-        <Route path='/details' component={ProductDetails}/>
+        <Route exact path='/shop' component={Shop}/>
+        <Route exact path='/shop/:productName' component={ProductDetails}/>
         <Footer />
       </BrowserRouter>
     </>
