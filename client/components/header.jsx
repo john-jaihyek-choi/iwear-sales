@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = props => {
   const [navStatus, setNavStatus] = useState(false);
 
   const navigate = event => {
     setNavStatus(!navStatus);
-    props.toggleView(event.target.getAttribute('id'));
   };
 
   return (
@@ -34,7 +34,7 @@ const Header = props => {
         </div>
         <nav className="navbar navbar-expand-lg bg-white">
           <div className="container">
-            <a href='/' className="navbar-brand text-decoration-none">iWear</a>
+            <Link to='/' onClick={navigate} className="navbar-brand text-decoration-none">iWear</Link>
             <button className="navbar-toggler" type="button" onClick={navigate} data-toggle="collapse" data-target="header-nav" aria-controls="header-nav" aria-expanded="true" aria-label="Toggle navigation">
               <i className='bx bx-menu bx-sm align-middle' ></i>
               <span className="align-middle">Menu</span>
@@ -42,11 +42,11 @@ const Header = props => {
 
             <div className={`collapse navbar-collapse ${navStatus ? 'show' : ''}`} id="header-nav">
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item nav-link active"><a href='/' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='home'>Home</a></li>
-                <li className="nav-item nav-link"><a href='/shop' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='shop'>Shop</a></li>
-                <li className="nav-item nav-link"><a href='/about' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='about'>About</a></li>
-                <li className="nav-item nav-link"><a href='/contact' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='contact'>Contact</a></li>
-                <li className="nav-item nav-link"><a href='/cart' className='text-decoration-none' onClick={e => navigate(e.target.getAttribute('id'))} id='cart'><i className='bx bxs-cart bx-xs'></i>[0]</a></li>
+                <li className="nav-item nav-link active"><Link to='/' className="text-decoration-none" onClick={navigate}>Home</Link></li>
+                <li className="nav-item nav-link"><Link to='/shop' className="text-decoration-none" onClick={navigate}>Shop</Link></li>
+                {/* <li className="nav-item nav-link"><Link to='/about' className="text-decoration-none" onClick={navigate}>About</Link></li>
+                <li className="nav-item nav-link"><Link to='/contact' className="text-decoration-none" onClick={navigate}>Contact</Link></li> */}
+                <li className="nav-item nav-link"><Link to='/cart' className="text-decoration-none" onClick={navigate}><i className='bx bxs-cart bx-xs'></i>[0]</Link></li>
               </ul>
             </div>
           </div>

@@ -15,9 +15,7 @@ app.use(express.json());
 
 app.get('/api/products', (req, res, next) => {
   const products = `
-    select "name",
-      "price",
-      "availColors"
+    select *
     from "styles"
     order by "glassesTypeId", "name"
   `;
@@ -49,6 +47,21 @@ app.get('/api/swatches', (req, res, next) => {
       res.json(swatches);
     })
     .catch(err => next(err));
+});
+
+app.get('/api/details', (req, res, next) => {
+  const details = `
+    select *
+      from "styles"
+      where "name" = $1
+  `;
+  const detailsValue = [req.query.productName];
+
+  db.query(details, detailsValue)
+    .then(result => {
+      const [productDetail] = result.rows;
+      res.json(productDetail);
+    });
 });
 
 app.get('/api/products/:productId', (req, res, next) => {
