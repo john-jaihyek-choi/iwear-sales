@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 const ProductDetails = props => {
   const [details, setDetails] = useState(props.location.productProps || null);
+  const [fetchStatus, setFetchStatus] = useState(false);
 
   const getProductDetail = () => {
     fetch(`/api/details?productName=${props.match.params.productName}`)
       .then(promise => promise.json())
       .then(details => {
         setDetails(details);
+        setFetchStatus(true);
       });
   };
 
   useEffect(() => {
-    if (details == null) {
+    if (!fetchStatus) {
       getProductDetail();
     }
   }, []);
@@ -28,10 +30,10 @@ const ProductDetails = props => {
           <li className='mx-1'>{props.match.params.productName.toUpperCase()}</li>
         </ul>
       </div>
-      <div className='row'>
+      <div className='row text-dark'>
         <div className='col-lg-6 col-md-6'>
           <div>
-            {details
+            {fetchStatus
               ? <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
               : <div>Loading...</div>
             }
@@ -39,7 +41,7 @@ const ProductDetails = props => {
         </div>
         <div className='col-lg-6 col-md-6'>
           <div>
-            {details
+            {fetchStatus
               ? <>
                 <h1>{(details.name).toUpperCase()}</h1>
                 <span>{(details.type).toUpperCase()}</span>
@@ -50,10 +52,10 @@ const ProductDetails = props => {
             }
           </div>
           <div>
-            {details
+            {fetchStatus
               ? <>
                 <p>{details.description}</p>
-                <p>Front Width:{details.dimensions.FW}, Lens Height:{details.dimensions.LH}, Lens Width:{details.dimensions.LW}, Temple:{details.dimensions.T}</p>
+                <p>Frame Width:{details.dimensions.FW}, Lens Height:{details.dimensions.LH}, Lens Width:{details.dimensions.LW}, Temple:{details.dimensions.T}</p>
               </>
               : <div>Loading...</div>
             }
