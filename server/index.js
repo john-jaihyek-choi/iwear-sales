@@ -15,8 +15,10 @@ app.use(express.json());
 
 app.get('/api/products', (req, res, next) => {
   const products = `
-    select *
-    from "styles"
+    select "s".*,
+      "l"."type"
+    from "styles" as "s"
+    join "lensType" as "l" using ("lensTypeId")
     order by "glassesTypeId", "name"
   `;
 

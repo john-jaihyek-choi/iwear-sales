@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductDetails = props => {
-  const [details, setDetails] = useState(props.location.productProps || null);
+  const [details, setDetails] = useState(null);
   const [fetchStatus, setFetchStatus] = useState(false);
 
   const getProductDetail = () => {
@@ -18,7 +18,7 @@ const ProductDetails = props => {
     if (!fetchStatus) {
       getProductDetail();
     }
-  }, []);
+  });
 
   return (
     <div className='container'>

@@ -31,10 +31,7 @@ const Products = props => {
       const productInfo = <li key={name} className='col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 mt-4'>
         <div className="productInfo text-center">
           <div className="productImage">
-            <Link to={{
-              pathname: `/shop/${name}`,
-              productProps: { product: product }
-            }}>
+            <Link to={`/shop/${name}`}>
               <img src={image2} className='side' alt={image2}/>
               <img src={image1} className='front' alt={image1}/>
             </Link>
