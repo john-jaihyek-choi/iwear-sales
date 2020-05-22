@@ -1,0 +1,19 @@
+footer {
+    font-size: 14px;
+    padding: 4em 0;
+    color: #000000;
+}
+
+.footer-heading {
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.footer-content {
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: 400;
+}

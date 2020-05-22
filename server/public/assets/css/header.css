@@ -1,0 +1,66 @@
+.topper {
+    font-size: 11px;
+    width: 100%;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: black;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: black;
+}
+
+.navbar-brand:hover {
+    color: black;
+}
+
+.navbar .navbar-nav > .nav-item {
+    font-size: 10px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 400;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 1 !important;
+}
+
+.navbar .nav-item a {
+    color: black;
+}
+
+.nav-item:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+.navbar-toggler {
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding-right: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: .1em;
+}
+
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #000000 !important;
+    }
+    .navbar .nav-item a, .navbar-brand {
+        color: white;
+    }
+    .nav-item:hover {
+        transform: none;
+    }
+    .navbar-brand:hover {
+        color: white;
+    }
+}
