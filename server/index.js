@@ -51,10 +51,17 @@ app.get('/api/swatches', (req, res, next) => {
 
 app.get('/api/details', (req, res, next) => {
   const details = `
-    select *
-      from "styles"
-      where "name" = $1
+    select "s"."name",
+      "s"."price",
+      "s"."description",
+      "s"."availColors",
+      "s"."dimensions",
+      "l"."type"
+    from "styles" as "s"
+    join "lensType" as "l" using ("lensTypeId")
+    where "s"."name" = $1
   `;
+
   const detailsValue = [req.query.productName];
 
   db.query(details, detailsValue)

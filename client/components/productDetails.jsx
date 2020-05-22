@@ -12,7 +12,7 @@ const ProductDetails = props => {
   };
 
   useEffect(() => {
-    if (!details) {
+    if (details == null) {
       getProductDetail();
     }
   }, []);
@@ -28,8 +28,26 @@ const ProductDetails = props => {
           <li className='mx-1'>{props.match.params.productName.toUpperCase()}</li>
         </ul>
       </div>
-      <div>
-
+      <div className='row'>
+        <div className='col-lg-6 col-md-6'>
+          <div className='h-100'>
+            {details
+              ? <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
+              : <div>Loading...</div>
+            }
+          </div>
+        </div>
+        <div className='col-lg-6 col-md-6'>
+          <div className='h-75'>
+            {details
+              ? <h1>{details.name}</h1>
+              : <div>Loading...</div>
+            }
+          </div>
+          <div className='h-25'>
+                Description, shipping, dimension section
+          </div>
+        </div>
       </div>
     </div>
   );
