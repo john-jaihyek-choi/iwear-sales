@@ -30,7 +30,7 @@ const ProductDetails = props => {
       </div>
       <div className='row'>
         <div className='col-lg-6 col-md-6'>
-          <div className='h-100'>
+          <div>
             {details
               ? <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
               : <div>Loading...</div>
@@ -38,14 +38,25 @@ const ProductDetails = props => {
           </div>
         </div>
         <div className='col-lg-6 col-md-6'>
-          <div className='h-75'>
+          <div>
             {details
-              ? <h1>{details.name}</h1>
+              ? <>
+                <h1>{(details.name).toUpperCase()}</h1>
+                <span>{(details.type).toUpperCase()}</span>
+                <h2>${(details.price / 100).toFixed(2)}</h2>
+                <button className='btn btn-primary'>ADD TO CART</button>
+              </>
               : <div>Loading...</div>
             }
           </div>
-          <div className='h-25'>
-                Description, shipping, dimension section
+          <div>
+            {details
+              ? <>
+                <p>{details.description}</p>
+                <p>Front Width:{details.dimensions.FW}, Lens Height:{details.dimensions.LH}, Lens Width:{details.dimensions.LW}, Temple:{details.dimensions.T}</p>
+              </>
+              : <div>Loading...</div>
+            }
           </div>
         </div>
       </div>
