@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductDetails = props => {
   const [details, setDetails] = useState(props.location.productProps || null);
@@ -23,9 +24,9 @@ const ProductDetails = props => {
     <div className='container'>
       <div className='row'>
         <ul className='list-unstyled d-flex'>
-          <li className='mx-1'>Home</li>
+          <li className='mx-1'><Link to='/' className="text-secondary">Home</Link></li>
           <li>&gt;</li>
-          <li className='mx-1'>Shop</li>
+          <li className='mx-1'><Link to='/shop' className="text-secondary">Shop</Link></li>
           <li>&gt;</li>
           <li className='mx-1'>{props.match.params.productName.toUpperCase()}</li>
         </ul>
