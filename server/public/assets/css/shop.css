@@ -44,6 +44,12 @@ img.side {
     height: 30px;
     width: 30px;
     padding: 3px;
+    opacity: 0;
+}
+
+.productInfo:hover .productSwatches img {
+    opacity:1;
+    transition: all 1s ease-in-out;
 }
 
 .productSwatches img:hover {
@@ -82,5 +88,8 @@ img.side {
     .productInfo .addToCart {
         opacity: 1;
         transform: translateY(0px);
+    }
+    .productSwatches img {
+        opacity: 1;
     }
 }
