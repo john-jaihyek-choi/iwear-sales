@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import DetailsTab from './detailsTab';
 
 const ProductDetails = props => {
   const [details, setDetails] = useState(null);
@@ -33,7 +34,7 @@ const ProductDetails = props => {
       </div>
       <div className='row text-dark'>
         <div className='col-lg-6 col-md-6'>
-          <div>
+          <div className='detailImg'>
             {fetchStatus
               ? <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
               : <div>Loading...</div>
@@ -54,10 +55,7 @@ const ProductDetails = props => {
           </div>
           <div>
             {fetchStatus
-              ? <>
-                <p>{details.description}</p>
-                <p>Frame Width:{details.dimensions.FW}, Lens Height:{details.dimensions.LH}, Lens Width:{details.dimensions.LW}, Temple:{details.dimensions.T}</p>
-              </>
+              ? <DetailsTab details={details} />
               : <div>Loading...</div>
             }
           </div>
