@@ -44,12 +44,13 @@ img.side {
     height: 30px;
     width: 30px;
     padding: 3px;
+    border-radius: 50px;
     opacity: 0;
 }
 
 .productInfo:hover .productSwatches img {
     opacity:1;
-    transition: all 1s ease-in-out;
+    transition: all .7s ease-in-out;
 }
 
 .productSwatches img:hover {
