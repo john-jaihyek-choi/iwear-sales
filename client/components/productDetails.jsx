@@ -55,7 +55,7 @@ const ProductDetails = props => {
           </div>
           <div>
             {fetchStatus
-              ? <DetailsTab details={details} />
+              ? <section className='tabPane'><DetailsTab details={details}/></section>
               : <div>Loading...</div>
             }
           </div>
