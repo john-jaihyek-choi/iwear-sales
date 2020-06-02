@@ -2,22 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DetailsTab from './detailsTab';
 
+const getProductDetail = (props, setDetails, setFetchStatus) => {
+  fetch(`/api/details?productName=${props.match.params.productName}`)
+    .then(promise => promise.json())
+    .then(details => {
+      setDetails(details);
+      setFetchStatus(true);
+    });
+};
+
 const ProductDetails = props => {
   const [details, setDetails] = useState(null);
   const [fetchStatus, setFetchStatus] = useState(false);
 
-  const getProductDetail = () => {
-    fetch(`/api/details?productName=${props.match.params.productName}`)
-      .then(promise => promise.json())
-      .then(details => {
-        setDetails(details);
-        setFetchStatus(true);
-      });
-  };
-
   useEffect(() => {
     if (!fetchStatus) {
-      getProductDetail();
+      getProductDetail(props, setDetails, setFetchStatus);
     }
   });
 
