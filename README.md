@@ -1,4 +1,4 @@
-# iWear-Sales (Under Construction)
+# iWear-Sales (Under Active Production)
 A full stack Node.js and React.js shopping cart app.
 
 ## Live Demo
