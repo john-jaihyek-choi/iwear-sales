@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// import ReactTooltip from 'react-tooltip';
 import DetailsTab from './detailsTab';
 
 const getProductDetail = (props, setDetails, setFetchStatus) => {
@@ -33,7 +34,7 @@ const ProductDetails = props => {
         </ul>
       </div>
       <div className='row text-dark my-4'>
-        <div className='col-lg-6 col-md-6'>
+        <div className='col-lg-7 col-md-6'>
           <div className='detailImg'>
             {fetchStatus
               ? <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
@@ -41,13 +42,18 @@ const ProductDetails = props => {
             }
           </div>
         </div>
-        <div className='col-lg-6 col-md-6'>
+        <div className='col-lg-5 col-md-6'>
           <div>
             {fetchStatus
               ? <section className='mb-4 basicDetails'>
                 <h1 className='mb-2'>{(details.name).toUpperCase()}</h1>
                 <span className='mb-4'>{(details.lensType).toUpperCase()}</span>
                 <h2 className='mb-4'>${(details.price / 100).toFixed(2)}</h2>
+                <div className='mb-4'>
+                  {details.availColors.map(color =>
+                    <img key={color} src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`}/>
+                  )}
+                </div>
                 <button className='btn btn-primary'>ADD TO CART</button>
               </section>
               : <div>Loading...</div>
