@@ -21,3 +21,9 @@
     overflow-y: scroll;
     border-radius: 0;
 }
+
+@media (max-width: 991.98px) {
+    .basicDetails {
+        text-align: center;
+    }
+}

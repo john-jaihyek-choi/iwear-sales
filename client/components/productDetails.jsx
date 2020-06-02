@@ -44,7 +44,7 @@ const ProductDetails = props => {
         <div className='col-lg-6 col-md-6'>
           <div>
             {fetchStatus
-              ? <section className='mb-4'>
+              ? <section className='mb-4 basicDetails'>
                 <h1 className='mb-2'>{(details.name).toUpperCase()}</h1>
                 <span className='mb-4'>{(details.lensType).toUpperCase()}</span>
                 <h2 className='mb-4'>${(details.price / 100).toFixed(2)}</h2>
