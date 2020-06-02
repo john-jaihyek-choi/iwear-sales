@@ -16,10 +16,10 @@ const DetailsTab = props => {
       <Tab eventKey="profile" title="Dimensions">
         <div className='tab'>
           <p>
-                    Frame Width:{props.details.dimensions.FW},
-                    Lens Height:{props.details.dimensions.LH},
-                    Lens Width:{props.details.dimensions.LW},
-                    Temple:{props.details.dimensions.T}
+            Frame Width:{props.details.dimensions.FW},
+            Lens Height:{props.details.dimensions.LH},
+            Lens Width:{props.details.dimensions.LW},
+            Temple:{props.details.dimensions.T}
           </p>
         </div>
       </Tab>

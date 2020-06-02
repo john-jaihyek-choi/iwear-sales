@@ -5,9 +5,11 @@
 
 .tabPane .nav-item {
     transform: none;
+    color: black;
  }
 
 .tab {
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-top-color: transparent;
     min-height: 200px;
     max-height: 200px;
