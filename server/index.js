@@ -58,9 +58,15 @@ app.get('/api/details', (req, res, next) => {
       "s"."description",
       "s"."availColors",
       "s"."dimensions",
-      "l"."type"
+      "l"."type" as "lensType",
+      "g"."gender",
+      "fs"."style" as "frameStyle",
+      "fm"."material"
     from "styles" as "s"
     join "lensType" as "l" using ("lensTypeId")
+    join "gender" as "g" using ("genderId")
+    join "frameStyle" as "fs" using ("frameStyleId")
+    join "frameMaterial" as "fm" using ("frameMaterialId")
     where "s"."name" = $1
   `;
 

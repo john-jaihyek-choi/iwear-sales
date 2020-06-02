@@ -11,9 +11,32 @@ const DetailsTab = props => {
           <p>
             {props.details.description}
           </p>
+          <p>
+            <strong>Gender: </strong>
+            {props.details.gender}
+          </p>
+          <p>
+            <strong>Lens: </strong>
+            {props.details.lensType}
+          </p>
+          <p>
+            <strong>Material: </strong>
+            {props.details.material}
+          </p>
+          <p>
+            <strong>Style: </strong>
+            {props.details.frameStyle}
+          </p>
+          <p>
+            <strong>Measurements: </strong> <br/>
+            Frame Width: {props.details.dimensions.FW}mm <br/>
+            Lens Height: {props.details.dimensions.LH}mm <br/>
+            Lens Width: {props.details.dimensions.LW}mm <br/>
+            Temple: {props.details.dimensions.T}mm
+          </p>
         </div>
       </Tab>
-      <Tab eventKey="profile" title="Dimensions">
+      <Tab eventKey="profile" title="Product Dimension">
         <div className='tab'>
           <p>
             Frame Width:{props.details.dimensions.FW},

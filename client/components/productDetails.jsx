@@ -46,7 +46,7 @@ const ProductDetails = props => {
             {fetchStatus
               ? <>
                 <h1>{(details.name).toUpperCase()}</h1>
-                <span>{(details.type).toUpperCase()}</span>
+                <span>{(details.lensType).toUpperCase()}</span>
                 <h2>${(details.price / 100).toFixed(2)}</h2>
                 <button className='btn btn-primary'>ADD TO CART</button>
               </>

@@ -8,9 +8,14 @@
     color: black;
  }
 
+ .tabPane .nav {
+     font-weight: 800;
+ }
+
 .tab {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-top-color: transparent;
+    padding: 20px;
     min-height: 200px;
     max-height: 200px;
     overflow-y: scroll;
