@@ -23,7 +23,7 @@ const ProductDetails = props => {
 
   return (
     <div className='container'>
-      <div className='row'>
+      <div className='row my-4'>
         <ul className='list-unstyled d-flex'>
           <li className='mx-1'><Link to='/' className="text-secondary">Home</Link></li>
           <li>&gt;</li>
@@ -32,7 +32,7 @@ const ProductDetails = props => {
           <li className='mx-1'>{props.match.params.productName.toUpperCase()}</li>
         </ul>
       </div>
-      <div className='row text-dark'>
+      <div className='row text-dark my-4'>
         <div className='col-lg-6 col-md-6'>
           <div className='detailImg'>
             {fetchStatus
@@ -44,18 +44,18 @@ const ProductDetails = props => {
         <div className='col-lg-6 col-md-6'>
           <div>
             {fetchStatus
-              ? <>
-                <h1>{(details.name).toUpperCase()}</h1>
-                <span>{(details.lensType).toUpperCase()}</span>
-                <h2>${(details.price / 100).toFixed(2)}</h2>
+              ? <section className='mb-4'>
+                <h1 className='mb-2'>{(details.name).toUpperCase()}</h1>
+                <span className='mb-4'>{(details.lensType).toUpperCase()}</span>
+                <h2 className='mb-4'>${(details.price / 100).toFixed(2)}</h2>
                 <button className='btn btn-primary'>ADD TO CART</button>
-              </>
+              </section>
               : <div>Loading...</div>
             }
           </div>
           <div>
             {fetchStatus
-              ? <section className='tabPane'><DetailsTab details={details}/></section>
+              ? <section className='mb-4 tabPane'><DetailsTab details={details}/></section>
               : <div>Loading...</div>
             }
           </div>
