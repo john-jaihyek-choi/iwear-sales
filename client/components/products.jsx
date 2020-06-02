@@ -2,24 +2,23 @@ import React, { Fragment } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { Link } from 'react-router-dom';
 
+const handleClick = event => {
+  if (event.target.className === 'swatch') {
+    const target = event.target.parentNode.parentNode.previousSibling.firstChild;
+    const product = event.target.getAttribute('data-product');
+    const color = event.target.getAttribute('data-color');
+    return toggleSwatchColor(target, product, color);
+  }
+};
+
+const toggleSwatchColor = (target, product, color) => {
+  target.querySelector('.side').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
+  target.querySelector('.side').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
+  target.querySelector('.front').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
+  target.querySelector('.front').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
+};
+
 const Products = props => {
-
-  const handleClick = event => {
-    if (event.target.className === 'swatch') {
-      const target = event.target.parentNode.parentNode.previousSibling.firstChild;
-      const product = event.target.getAttribute('data-product');
-      const color = event.target.getAttribute('data-color');
-      return toggleSwatchColor(target, product, color);
-    }
-  };
-
-  const toggleSwatchColor = (target, product, color) => {
-    target.querySelector('.side').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
-    target.querySelector('.side').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
-    target.querySelector('.front').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
-    target.querySelector('.front').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
-  };
-
   const renderItems = () => {
     const products = props.products.map(product => {
       const name = product.name;
