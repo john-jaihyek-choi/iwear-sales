@@ -15,8 +15,10 @@ app.use(express.json());
 
 app.get('/api/products', (req, res, next) => {
   const products = `
-    select *
-    from "styles"
+    select "s".*,
+      "l"."type"
+    from "styles" as "s"
+    join "lensType" as "l" using ("lensTypeId")
     order by "glassesTypeId", "name"
   `;
 
@@ -51,10 +53,23 @@ app.get('/api/swatches', (req, res, next) => {
 
 app.get('/api/details', (req, res, next) => {
   const details = `
-    select *
-      from "styles"
-      where "name" = $1
+    select "s"."name",
+      "s"."price",
+      "s"."description",
+      "s"."availColors",
+      "s"."dimensions",
+      "l"."type" as "lensType",
+      "g"."gender",
+      "fs"."style" as "frameStyle",
+      "fm"."material"
+    from "styles" as "s"
+    join "lensType" as "l" using ("lensTypeId")
+    join "gender" as "g" using ("genderId")
+    join "frameStyle" as "fs" using ("frameStyleId")
+    join "frameMaterial" as "fm" using ("frameMaterialId")
+    where "s"."name" = $1
   `;
+
   const detailsValue = [req.query.productName];
 
   db.query(details, detailsValue)

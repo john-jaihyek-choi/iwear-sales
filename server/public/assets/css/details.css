@@ -1,0 +1,29 @@
+.detailImg img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.tabPane .nav-item {
+    transform: none;
+    color: black;
+ }
+
+ .tabPane .nav {
+     font-weight: 800;
+ }
+
+.tab {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top-color: transparent;
+    padding: 20px;
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
+    border-radius: 0;
+}
+
+@media (max-width: 991.98px) {
+    .basicDetails {
+        text-align: center;
+    }
+}
