@@ -11,7 +11,6 @@ const Shop = props => {
       .then(promise => promise.json())
       .then(products => {
         setProducts(products);
-        setFetchStatus(true);
       });
   };
 
@@ -28,7 +27,10 @@ const Shop = props => {
       getSwatches();
       getProducts();
     }
-  }, []);
+    if (products.length !== 0) {
+      setFetchStatus(true);
+    }
+  });
 
   return (
     <>
