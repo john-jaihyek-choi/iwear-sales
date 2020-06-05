@@ -79,34 +79,34 @@ app.get('/api/details', (req, res, next) => {
     });
 });
 
-app.get('/api/products/:productId', (req, res, next) => {
-  const products = `
-    select *
-      from "products"
-      where "productId" = $1
-  `;
+// app.get('/api/products/:productId', (req, res, next) => {
+//   const products = `
+//     select *
+//       from "products"
+//       where "productId" = $1
+//   `;
 
-  const value = [req.params.productId];
+//   const value = [req.params.productId];
 
-  if (!Number.isInteger(Number(value[0])) || value[0] < 0) {
-    return (res.status(400).json({
-      error: 'Grade ID must be a positive integer.'
-    }));
-  }
+//   if (!Number.isInteger(Number(value[0])) || value[0] < 0) {
+//     return (res.status(400).json({
+//       error: 'Grade ID must be a positive integer.'
+//     }));
+//   }
 
-  db.query(products, value)
-    .then(result => {
-      const [item] = result.rows;
-      if (!item) {
-        res.status(404).json({
-          error: `Product ID ${req.params.productId} does not exist`
-        });
-      } else {
-        res.json(item);
-      }
-    })
-    .catch(err => next(err));
-});
+//   db.query(products, value)
+//     .then(result => {
+//       const [item] = result.rows;
+//       if (!item) {
+//         res.status(404).json({
+//           error: `Product ID ${req.params.productId} does not exist`
+//         });
+//       } else {
+//         res.json(item);
+//       }
+//     })
+//     .catch(err => next(err));
+// });
 
 app.get('/api/carts', (req, res, next) => {
   if (!req.session.cartId) {
