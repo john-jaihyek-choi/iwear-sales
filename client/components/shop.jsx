@@ -11,6 +11,7 @@ const Shop = props => {
       .then(promise => promise.json())
       .then(products => {
         setProducts(products);
+        setFetchStatus(true);
       });
   };
 
@@ -19,14 +20,13 @@ const Shop = props => {
       .then(promise => promise.json())
       .then(swatches => {
         setSwatches(swatches);
-        setFetchStatus(true);
       });
   };
 
   useEffect(() => {
     if (!fetchStatus) {
-      getProducts();
       getSwatches();
+      getProducts();
     }
   });
 
