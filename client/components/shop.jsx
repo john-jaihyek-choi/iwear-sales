@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import Products from './products';
 
-const getProducts = setProducts => {
-  fetch('/api/products')
-    .then(promise => promise.json())
-    .then(products => {
-      setProducts(products);
-    });
-};
-
-const getSwatches = (setSwatches, setFetchStatus) => {
-  fetch('/api/swatches')
-    .then(promise => promise.json())
-    .then(swatches => {
-      setSwatches(swatches);
-      setFetchStatus(true);
-    });
-};
-
 const Shop = props => {
   const [products, setProducts] = useState([]);
   const [swatches, setSwatches] = useState([]);
   const [fetchStatus, setFetchStatus] = useState(false);
 
+  const getProducts = () => {
+    fetch('/api/products')
+      .then(promise => promise.json())
+      .then(products => {
+        setProducts(products);
+      });
+  };
+
+  const getSwatches = () => {
+    fetch('/api/swatches')
+      .then(promise => promise.json())
+      .then(swatches => {
+        setSwatches(swatches);
+        setFetchStatus(true);
+      });
+  };
+
   useEffect(() => {
     if (!fetchStatus) {
-      getProducts(setProducts);
-      getSwatches(setSwatches, setFetchStatus);
+      getProducts();
+      getSwatches();
     }
   });
 
