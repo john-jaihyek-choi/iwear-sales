@@ -28,7 +28,7 @@ const Shop = props => {
       getSwatches();
       getProducts();
     }
-  });
+  }, []);
 
   return (
     <>
