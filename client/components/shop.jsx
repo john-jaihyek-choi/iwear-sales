@@ -4,13 +4,15 @@ import Products from './products';
 const Shop = props => {
   const [products, setProducts] = useState([]);
   const [swatches, setSwatches] = useState([]);
-  const [fetchStatus, setFetchStatus] = useState(false);
+  const [productFetchStatus, setProductFetchStatus] = useState(false);
+  const [swatchesFetchStatus, setSwatchesFetchStatus] = useState(false);
 
   const getProducts = () => {
     fetch('/api/products')
       .then(promise => promise.json())
       .then(products => {
         setProducts(products);
+        setProductFetchStatus(true);
       });
   };
 
@@ -19,16 +21,16 @@ const Shop = props => {
       .then(promise => promise.json())
       .then(swatches => {
         setSwatches(swatches);
+        setSwatchesFetchStatus(true);
       });
   };
 
   useEffect(() => {
-    if (!fetchStatus) {
-      getSwatches();
+    if (!productFetchStatus) {
       getProducts();
     }
-    if (products.length !== 0) {
-      setFetchStatus(true);
+    if (!swatchesFetchStatus) {
+      getSwatches();
     }
   });
 
@@ -36,7 +38,7 @@ const Shop = props => {
     <>
       <div className="container">
         <ul className='list-unstyled d-flex flex-wrap'>
-          {(fetchStatus) ? <Products products={products} swatches={swatches}/> : <div>Loading...</div>}
+          {(productFetchStatus && swatchesFetchStatus) ? <Products products={products} swatches={swatches}/> : <div>Loading...</div>}
         </ul>
       </div>
     </>
