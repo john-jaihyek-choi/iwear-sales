@@ -22,13 +22,17 @@ const Shop = props => {
       });
   };
 
+  const changeLoad = async () => {
+    await setFetchStatus(true);
+  };
+
   useEffect(() => {
     if (!fetchStatus) {
       getSwatches();
       getProducts();
-      setFetchStatus(true);
+      changeLoad();
     }
-  });
+  }, []);
 
   return (
     <>
