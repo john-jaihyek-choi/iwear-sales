@@ -6,33 +6,40 @@ const Shop = props => {
   const [swatches, setSwatches] = useState([]);
   const [fetchStatus, setFetchStatus] = useState(false);
 
-  const getProducts = async () => {
-    await fetch('/api/products')
-      .then(promise => promise.json())
-      .then(products => {
-        setProducts(products);
-      });
-  };
+  // const getProducts = async () => {
+  //   await fetch('/api/products')
+  //     .then(promise => promise.json())
+  //     .then(products => {
+  //       setProducts(products);
+  //     });
+  //     setFetchStatus(true);
+  // };
 
-  const getSwatches = async () => {
-    await fetch('/api/swatches')
-      .then(promise => promise.json())
-      .then(swatches => {
-        setSwatches(swatches);
-      });
-  };
+  // const getSwatches = async () => {
+  //   await fetch('/api/swatches')
+  //     .then(promise => promise.json())
+  //     .then(swatches => {
+  //       setSwatches(swatches);
+  //     });
+  // };
 
-  const changeLoad = async () => {
-    await setFetchStatus(true);
+  const callAPI = async () => {
+    const productRes = await fetch('/api/products');
+    const products = await productRes.json();
+
+    const swatchesRes = await fetch('/api/swatches');
+    const swatches = await swatchesRes.json();
+
+    setProducts(products);
+    setSwatches(swatches);
+    setFetchStatus(true);
   };
 
   useEffect(() => {
     if (!fetchStatus) {
-      getSwatches();
-      getProducts();
-      changeLoad();
+      callAPI();
     }
-  }, []);
+  }, [fetchStatus]);
 
   return (
     <>
