@@ -6,8 +6,8 @@ const Shop = props => {
   const [swatches, setSwatches] = useState([]);
   const [fetchStatus, setFetchStatus] = useState(false);
 
-  const getProducts = () => {
-    fetch('/api/products')
+  const getProducts = async () => {
+    await fetch('/api/products')
       .then(promise => promise.json())
       .then(products => {
         setProducts(products);
@@ -15,8 +15,8 @@ const Shop = props => {
       });
   };
 
-  const getSwatches = () => {
-    fetch('/api/swatches')
+  const getSwatches = async () => {
+    await fetch('/api/swatches')
       .then(promise => promise.json())
       .then(swatches => {
         setSwatches(swatches);
@@ -28,7 +28,7 @@ const Shop = props => {
       getSwatches();
       getProducts();
     }
-  });
+  }, [fetchStatus]);
 
   return (
     <>
