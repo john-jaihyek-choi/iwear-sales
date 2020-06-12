@@ -4,6 +4,9 @@ A full stack Node.js and React.js shopping cart app.
 ## Live Demo
 Application can be accessed live [here](https://iwear-sales.johnjhc.com/)
 
+## Current Progress
+![wv-preview](https://user-images.githubusercontent.com/57784907/84470118-7687a000-ac37-11ea-9ce1-3f94c8106081.png)
+
 ## Technologies Used
 - HTML5
 - CSS3
