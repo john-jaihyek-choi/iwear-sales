@@ -6,6 +6,7 @@ Application can be accessed live [here](https://iwear-sales.johnjhc.com/)
 
 ## Current Progress
 ![wv-preview](https://user-images.githubusercontent.com/57784907/84470118-7687a000-ac37-11ea-9ce1-3f94c8106081.png)
+![wv-preview](https://user-images.githubusercontent.com/57784907/84560188-405d2580-acf6-11ea-8f89-39b8710a3169.gif)
 
 ## Technologies Used
 - HTML5
