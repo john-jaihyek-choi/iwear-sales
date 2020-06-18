@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { Link } from 'react-router-dom';
 
@@ -19,6 +19,8 @@ const toggleSwatchColor = (target, product, color) => {
 };
 
 const Products = props => {
+  const swatches = useState(props.swatches);
+
   const renderItems = () => {
     const products = props.products.map(product => {
       const name = product.name;
@@ -40,7 +42,7 @@ const Products = props => {
             <div className='productPrice mb-2'>${(price / 100).toFixed(2)}</div>
             <div className='productSwatches mb-4'>
               {availColors.map(color => {
-                const swatchName = props.swatches[color].colorName;
+                const swatchName = swatches[0][color].colorName;
                 return (
                   <Fragment key={`${name}_${color}`}>
                     <img className='swatch' src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} onClick={handleClick}/>
