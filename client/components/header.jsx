@@ -44,8 +44,6 @@ const Header = props => {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item nav-link active"><Link to='/' className="text-decoration-none" onClick={navigate}>Home</Link></li>
                 <li className="nav-item nav-link"><Link to='/shop' className="text-decoration-none" onClick={navigate}>Shop</Link></li>
-                {/* <li className="nav-item nav-link"><Link to='/about' className="text-decoration-none" onClick={navigate}>About</Link></li>
-                <li className="nav-item nav-link"><Link to='/contact' className="text-decoration-none" onClick={navigate}>Contact</Link></li> */}
                 <li className="nav-item nav-link"><Link to='/cart' className="text-decoration-none" onClick={navigate}><i className='bx bxs-cart bx-xs'></i>[0]</Link></li>
               </ul>
             </div>
