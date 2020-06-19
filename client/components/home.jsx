@@ -12,8 +12,8 @@ const Home = () => {
             <h5>OPTICAL GLASSES</h5>
             <h3 className='font-weight-bold'>Explore our selection of fashion optical glasses to find the perfect frame that suits you!</h3>
             <div className='d-flex pt-4 text-center'>
-              {/* <button className='col btn mr-2'>SHOP MEN</button>
-              <button className='col btn'>SHOP WOMEN</button> */}
+              <button className='col btn mr-2'>SHOP MEN</button>
+              {/* <button className='col btn'>SHOP WOMEN</button> */}
             </div>
           </div>
         </div>

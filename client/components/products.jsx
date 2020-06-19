@@ -1,27 +1,31 @@
-import React, { Fragment } from 'react';
-import ReactTooltip from 'react-tooltip';
+import React, { Fragment, useRef, createRef } from 'react';
 import { Link } from 'react-router-dom';
-
-const handleClick = event => {
-  if (event.target.className === 'swatch') {
-    const target = event.target.parentNode.parentNode.previousSibling.firstChild;
-    const product = event.target.getAttribute('data-product');
-    const color = event.target.getAttribute('data-color');
-    return toggleSwatchColor(target, product, color);
-  }
-};
-
-const toggleSwatchColor = (target, product, color) => {
-  target.querySelector('.side').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
-  target.querySelector('.side').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
-  target.querySelector('.front').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
-  target.querySelector('.front').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
-};
+import ReactTooltip from 'react-tooltip';
 
 const Products = props => {
+  const frontImageRef = useRef(props.products.map(product => createRef(product.availColors[0])));
+  const sideImageRef = useRef(props.products.map(product => createRef(product.availColors[1])));
+
+  const handleClick = event => {
+    if (event.target.className === 'swatch') {
+      const product = event.target.getAttribute('data-product');
+      const color = event.target.getAttribute('data-color');
+
+      const frontUrl = `/assets/images/glasses/${product}/${product}_${color}_1.png`;
+      const sideUrl = `/assets/images/glasses/${product}/${product}_${color}_2.png`;
+
+      const frontImg = frontImageRef.current[event.target.getAttribute('data-ref_index')].current;
+      frontImg.src = frontUrl;
+      frontImg.alt = frontUrl;
+
+      const sideImg = sideImageRef.current[event.target.getAttribute('data-ref_index')].current;
+      sideImg.src = sideUrl;
+      sideImg.alt = sideUrl;
+    }
+  };
 
   const renderItems = () => {
-    const products = props.products.map(product => {
+    const products = props.products.map((product, refIndex) => {
       const name = product.name;
       const price = product.price;
       const availColors = product.availColors;
@@ -29,7 +33,7 @@ const Products = props => {
       const image2 = `/assets/images/glasses/${name}/${name}_${availColors[0]}_2.png`;
 
       const productInfo = <li key={name} className='col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 mt-4'>
-        <div className="productInfo text-center">
+        <section className="productInfo text-center">
           <div className="productImage">
             <Link to={{
               pathname: `/shop/${name}`,
@@ -37,8 +41,8 @@ const Products = props => {
                 swatches: props.swatches
               }
             }}>
-              <img src={image2} className='side' alt={image2}/>
-              <img src={image1} className='front' alt={image1}/>
+              <img src={image2} className='side' alt={image2} ref={sideImageRef.current[refIndex]}/>
+              <img src={image1} className='front' alt={image1} ref={frontImageRef.current[refIndex]}/>
             </Link>
           </div>
           <div className="productDetails text-dark">
@@ -49,7 +53,7 @@ const Products = props => {
                 const swatchName = props.swatches[color].colorName;
                 return (
                   <Fragment key={`${name}_${color}`}>
-                    <img className='swatch' src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} onClick={handleClick}/>
+                    <img className='swatch' src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} data-ref_index={refIndex} onClick={handleClick}/>
                     <ReactTooltip id={swatchName}><span className='swatchColor'>{swatchName}</span></ReactTooltip>
                   </Fragment>);
               })}
@@ -58,7 +62,7 @@ const Products = props => {
           <div className='d-flex justify-content-center'>
             <button className='addToCart btn btn-dark'>Add To Cart</button>
           </div>
-        </div>
+        </section>
       </li>;
 
       return productInfo;

@@ -36,7 +36,7 @@ const ProductDetails = props => {
   }, [fetchStatus]);
 
   return (
-    <div className='container'>
+    <section className='container'>
       <div className='row my-4'>
         <ul className='list-unstyled d-flex'>
           <li className='mx-1'><Link to='/' className="text-secondary">Home</Link></li>
@@ -84,7 +84,7 @@ const ProductDetails = props => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
