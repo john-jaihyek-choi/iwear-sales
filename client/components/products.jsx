@@ -21,8 +21,8 @@ const handleClick = (event, refs) => {
 };
 
 const Products = props => {
-  const frontImageRef = useRef(props.products.map(product => createRef(product.availColors[0])));
-  const sideImageRef = useRef(props.products.map(product => createRef(product.availColors[1])));
+  const frontImageRef = useRef(props.products.map(() => createRef()));
+  const sideImageRef = useRef(props.products.map(() => createRef()));
 
   return (props.products.map((product, refIndex) => {
     const name = product.name;
