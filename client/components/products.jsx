@@ -53,7 +53,16 @@ const Products = props => {
                 const swatchName = props.swatches[color].colorName;
                 return (
                   <Fragment key={`${name}_${color}`}>
-                    <img className='swatch' src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} data-ref_index={refIndex} onClick={handleClick}/>
+                    <img
+                      className='swatch'
+                      src={`/assets/images/swatches/${color}.png`}
+                      alt={`/assets/images/swatches/${color}.png`}
+                      onClick={handleClick}
+                      data-tip data-for={swatchName}
+                      data-product={name}
+                      data-color={color}
+                      data-ref_index={refIndex}
+                    />
                     <ReactTooltip id={swatchName}><span className='swatchColor'>{swatchName}</span></ReactTooltip>
                   </Fragment>);
               })}
