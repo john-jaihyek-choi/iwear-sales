@@ -20,7 +20,7 @@ const ProductDetails = props => {
     if (!fetchStatus) {
       getProductDetail(props, setDetails, setFetchStatus);
     }
-  });
+  }, [fetchStatus]);
 
   return (
     <div className='container'>
