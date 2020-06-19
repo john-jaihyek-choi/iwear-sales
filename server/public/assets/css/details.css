@@ -27,3 +27,7 @@
         text-align: center;
     }
 }
+
+.detailSwatches img {
+    cursor: pointer;
+}

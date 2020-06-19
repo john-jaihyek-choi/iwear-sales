@@ -1,29 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-// import ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip';
 import DetailsTab from './detailsTab';
 
-const getProductDetail = (props, setDetails, setFetchStatus) => {
-  fetch(`/api/details?productName=${props.match.params.productName}`)
-    .then(promise => promise.json())
-    .then(details => {
-      setDetails(details);
-      setFetchStatus(true);
-    });
+const handleClick = event => {
+  if (event.target.className === 'swatch') {
+    const target = event.target.parentNode.parentNode.parentNode.parentNode.previousSibling.firstChild.firstChild;
+    const product = event.target.getAttribute('data-product');
+    const color = event.target.getAttribute('data-color');
+    return toggleSwatchColor(target, product, color);
+  }
+};
+
+const toggleSwatchColor = (target, product, color) => {
+  target.setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
+  target.setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
 };
 
 const ProductDetails = props => {
   const [details, setDetails] = useState(null);
   const [fetchStatus, setFetchStatus] = useState(false);
 
+  const callAPI = async () => {
+    const detailsRes = await fetch(`/api/details?productName=${props.match.params.productName}`);
+    const details = await detailsRes.json();
+
+    setDetails(details);
+    setFetchStatus(true);
+  };
+
   useEffect(() => {
     if (!fetchStatus) {
-      getProductDetail(props, setDetails, setFetchStatus);
+      callAPI();
     }
-  });
+  }, [fetchStatus]);
 
   return (
-    <div className='container'>
+    <section className='container'>
       <div className='row my-4'>
         <ul className='list-unstyled d-flex'>
           <li className='mx-1'><Link to='/' className="text-secondary">Home</Link></li>
@@ -49,10 +62,14 @@ const ProductDetails = props => {
                 <h1 className='mb-2'>{(details.name).toUpperCase()}</h1>
                 <span className='mb-4'>{(details.lensType).toUpperCase()}</span>
                 <h2 className='mb-4'>${(details.price / 100).toFixed(2)}</h2>
-                <div className='mb-4'>
-                  {details.availColors.map(color =>
-                    <img key={color} src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`}/>
-                  )}
+                <div className='mb-4 detailSwatches'>
+                  {details.availColors.map(color => {
+                    const colorName = props.location.state.swatches[color].colorName;
+                    return <Fragment key={`${details.name}_${color}`}>
+                      <img className='swatch' src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`} data-tip data-for={color} data-product={details.name} data-color={color} onClick={handleClick}/>
+                      <ReactTooltip id={color}><span className='swatchColor'>{colorName}</span></ReactTooltip>
+                    </Fragment>;
+                  })}
                 </div>
                 <button className='btn btn-primary'>ADD TO CART</button>
               </section>
@@ -67,7 +84,7 @@ const ProductDetails = props => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
