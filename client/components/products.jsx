@@ -1,33 +1,25 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import ReactTooltip from 'react-tooltip';
+import React from 'react';
+// import React, { Fragment } from 'react';
+// import ReactTooltip from 'react-tooltip';
 import { Link } from 'react-router-dom';
 
-const handleClick = event => {
-  if (event.target.className === 'swatch') {
-    const target = event.target.parentNode.parentNode.previousSibling.firstChild;
-    const product = event.target.getAttribute('data-product');
-    const color = event.target.getAttribute('data-color');
-    return toggleSwatchColor(target, product, color);
-  }
-};
+// const handleClick = event => {
+//   if (event.target.className === 'swatch') {
+//     const target = event.target.parentNode.parentNode.previousSibling.firstChild;
+//     const product = event.target.getAttribute('data-product');
+//     const color = event.target.getAttribute('data-color');
+//     return toggleSwatchColor(target, product, color);
+//   }
+// };
 
-const toggleSwatchColor = (target, product, color) => {
-  target.querySelector('.side').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
-  target.querySelector('.side').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
-  target.querySelector('.front').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
-  target.querySelector('.front').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
-};
+// const toggleSwatchColor = (target, product, color) => {
+//   target.querySelector('.side').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
+//   target.querySelector('.side').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_2.png`);
+//   target.querySelector('.front').setAttribute('src', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
+//   target.querySelector('.front').setAttribute('alt', `/assets/images/glasses/${product}/${product}_${color}_1.png`);
+// };
 
 const Products = props => {
-  const [swatches, setSwatch] = useState([]);
-  const [fetchStatus, setFetchStatus] = useState(false);
-
-  useEffect(() => {
-    if (!fetchStatus) {
-      setSwatch(props.swatches);
-      setFetchStatus(true);
-    }
-  }, [swatches]);
 
   const renderItems = () => {
     const products = props.products.map(product => {
@@ -49,14 +41,14 @@ const Products = props => {
             <div className='productName mb-2'><a href="/details" className='text-decoration-none text-dark'>{name.toUpperCase()}</a></div>
             <div className='productPrice mb-2'>${(price / 100).toFixed(2)}</div>
             <div className='productSwatches mb-4'>
-              {availColors.map(color => {
+              {/* {availColors.map(color => {
                 const swatchName = swatches[color].colorName;
                 return (
                   <Fragment key={`${name}_${color}`}>
                     <img className='swatch' src={`/assets/images/swatches/${color}.png`} alt={`/assets/images/swatches/${color}.png`} data-tip data-for={swatchName} data-product={name} data-color={color} onClick={handleClick}/>
                     <ReactTooltip id={swatchName}><span className='swatchColor'>{swatchName}</span></ReactTooltip>
                   </Fragment>);
-              })}
+              })} */}
             </div>
           </div>
           <div className='d-flex justify-content-center'>
@@ -70,9 +62,7 @@ const Products = props => {
     return products;
   };
 
-  return (
-    !fetchStatus ? <div>loading...</div> : renderItems()
-  );
+  return renderItems();
 };
 
 export default Products;
