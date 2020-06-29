@@ -52,7 +52,7 @@ const ProductDetails = props => {
           <div className='detailImg'>
             {fetchStatus
               ? <>
-                <Carousel>
+                <Carousel interval={7000}>
                   <Carousel.Item>
                     <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
                   </Carousel.Item>
