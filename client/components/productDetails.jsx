@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import DetailsTab from './detailsTab';
+import Carousel from 'react-bootstrap/Carousel';
 
 const handleClick = event => {
   if (event.target.className === 'swatch') {
@@ -50,7 +51,17 @@ const ProductDetails = props => {
         <div className='col-lg-7 col-md-6'>
           <div className='detailImg'>
             {fetchStatus
-              ? <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
+              ? <>
+                <Carousel>
+                  <Carousel.Item>
+                    <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_2.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_2.png`}/>
+                  </Carousel.Item>
+
+                </Carousel>
+              </>
               : <div>Loading...</div>
             }
           </div>
