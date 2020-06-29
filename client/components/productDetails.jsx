@@ -37,7 +37,7 @@ const ProductDetails = props => {
   }, [fetchStatus]);
 
   return (
-    <section className='container'>
+    <section className='productDetails container'>
       <div className='row my-4'>
         <ul className='list-unstyled d-flex'>
           <li className='mx-1'><Link to='/' className="text-secondary">Home</Link></li>
@@ -71,7 +71,7 @@ const ProductDetails = props => {
             {fetchStatus
               ? <section className='mb-4 basicDetails'>
                 <h1 className='mb-2'>{(details.name).toUpperCase()}</h1>
-                <span className='mb-4'>{(details.lensType).toUpperCase()}</span>
+                <span className='mb-4 badge badge-pill badge-info'>{(details.lensType).toUpperCase()}</span>
                 <h2 className='mb-4'>${(details.price / 100).toFixed(2)}</h2>
                 <div className='mb-4 detailSwatches'>
                   {details.availColors.map(color => {
@@ -82,7 +82,7 @@ const ProductDetails = props => {
                     </Fragment>;
                   })}
                 </div>
-                <button className='btn btn-primary'>ADD TO CART</button>
+                <button className='addToCart btn btn-dark'>ADD TO CART</button>
               </section>
               : <div>Loading...</div>
             }
