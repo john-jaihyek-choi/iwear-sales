@@ -29,5 +29,23 @@
 }
 
 .detailSwatches img {
+    width: 35px;
+    height: 35px;
+}
+
+.detailSwatches img:hover {
+    border: 1px solid #37455e;
+    border-radius: 50px;
     cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators {
+    filter: invert(100%);
+}
+
+.productDetails .addToCart {
+    border-radius: 50px;
 }

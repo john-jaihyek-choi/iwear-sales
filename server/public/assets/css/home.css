@@ -3,7 +3,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 65%;
-    min-height: 550px;
+    min-height: 65vh;
 }
 
 .sunglassCarousel {
@@ -11,11 +11,11 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 40%;
-    min-height: 550px;
+    min-height: 65vh;
 }
 
 .carouselTextBox {
-    min-height: 580px;
+    min-height: 65vh;
     color: rgb(61, 65, 70);
     text-shadow: 1px 2px hsl(0, 0%, 100%);
 }

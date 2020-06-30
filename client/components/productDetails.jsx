@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import DetailsTab from './detailsTab';
+import Carousel from 'react-bootstrap/Carousel';
 
 const handleClick = event => {
   if (event.target.className === 'swatch') {
@@ -36,7 +37,7 @@ const ProductDetails = props => {
   }, [fetchStatus]);
 
   return (
-    <section className='container'>
+    <section className='productDetails container'>
       <div className='row my-4'>
         <ul className='list-unstyled d-flex'>
           <li className='mx-1'><Link to='/' className="text-secondary">Home</Link></li>
@@ -50,7 +51,17 @@ const ProductDetails = props => {
         <div className='col-lg-7 col-md-6'>
           <div className='detailImg'>
             {fetchStatus
-              ? <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
+              ? <>
+                <Carousel interval={7000}>
+                  <Carousel.Item>
+                    <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_1.png`}/>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img src={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_2.png`} alt={`/assets/images/glasses/${details.name}/${details.name}_${details.availColors[0]}_2.png`}/>
+                  </Carousel.Item>
+
+                </Carousel>
+              </>
               : <div>Loading...</div>
             }
           </div>
@@ -60,7 +71,7 @@ const ProductDetails = props => {
             {fetchStatus
               ? <section className='mb-4 basicDetails'>
                 <h1 className='mb-2'>{(details.name).toUpperCase()}</h1>
-                <span className='mb-4'>{(details.lensType).toUpperCase()}</span>
+                <span className='mb-4 badge badge-pill badge-info'>{(details.lensType).toUpperCase()}</span>
                 <h2 className='mb-4'>${(details.price / 100).toFixed(2)}</h2>
                 <div className='mb-4 detailSwatches'>
                   {details.availColors.map(color => {
@@ -71,7 +82,7 @@ const ProductDetails = props => {
                     </Fragment>;
                   })}
                 </div>
-                <button className='btn btn-primary'>ADD TO CART</button>
+                <button className='addToCart btn btn-dark'>ADD TO CART</button>
               </section>
               : <div>Loading...</div>
             }
